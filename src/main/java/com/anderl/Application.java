@@ -1,4 +1,4 @@
-package de.anderl.main;
+package com.anderl;
 
 import com.sun.faces.config.ConfigureListener;
 import org.apache.commons.logging.Log;
@@ -12,9 +12,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.ServletContextAware;
+import org.springframework.web.jsf.el.SpringBeanFacesELResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import javax.el.ELResolver;
 import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
 
@@ -52,6 +54,11 @@ public class Application extends SpringBootServletInitializer implements Servlet
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".jsf");
         return resolver;
+    }
+
+    @Bean
+    public ELResolver getElResolver() {
+        return new SpringBeanFacesELResolver();
     }
 
     @Override
