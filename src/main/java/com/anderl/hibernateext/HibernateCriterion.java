@@ -27,6 +27,15 @@ public class HibernateCriterion<T, E> {
         assertFields();
     }
 
+    public HibernateCriterion(Class<T> valueType, Class<E> entityType, String property, Criteria criteria, T value) {
+        this.valueType = valueType;
+        this.entityType = entityType;
+        this.property = property;
+        this.criteria = criteria;
+        this.value = value;
+        assertFields();
+    }
+
     public HibernateCriterion(Class<E> entityType, String property) {
         this.valueType = (Class<T>) String.class;
         this.entityType = entityType;
