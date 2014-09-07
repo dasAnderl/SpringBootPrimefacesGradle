@@ -16,11 +16,14 @@
  */
 package com.anderl.controller;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-@ManagedBean
-@ViewScoped
+import javax.faces.bean.ManagedBean;
+
+@Component
+@Scope("view")
+@ManagedBean//only for autocompletion in xhtml. annotation not working
 public class HelloWorldBean {
 
 

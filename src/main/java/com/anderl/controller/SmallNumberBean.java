@@ -19,17 +19,18 @@ package com.anderl.controller;
 import com.anderl.dao.TestEntityRepository;
 import com.anderl.domain.TestEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-@ManagedBean
-@ViewScoped
+@Component
+@Scope("view")
+@ManagedBean//only for autocompletion in xhtml. annotation not working
 public class SmallNumberBean {
 
     @Autowired

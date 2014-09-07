@@ -2,6 +2,7 @@ package com.anderl.hibernateext;
 
 import org.hibernate.criterion.Criterion;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 
 import java.util.logging.Logger;
 
@@ -46,13 +47,13 @@ public class HibernateCriterion<T, E> {
 
     public Criterion get() {
         if (!isValid()) return null;
-        return criteria.get(property, value);
+        return criteria.get(property, valueType.cast(value));
     }
 
     public boolean isValid() {
         boolean valid = true;
         final boolean valueRequired = !criteria.equals(Criteria.isNull);
-        if (valueRequired) valid = value != null;
+        if (valueRequired) valid = value != null && !StringUtils.isEmpty(value);
         if (!Helper.fieldExists(entityType, property))
             throw new RuntimeException("No field " + property + " found on " + entityType.getSimpleName());
         return valid;

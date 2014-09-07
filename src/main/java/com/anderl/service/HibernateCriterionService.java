@@ -28,7 +28,7 @@ public class HibernateCriterionService {
         Session session = entityManager.unwrap(Session.class);
 
         Criteria criteria = session.createCriteria(hibernateCriterions.get(0).entityType);
-        List<Criterion> criterions = hibernateCriterions.stream().map(criterion -> criterion.get()).collect(Collectors.toList());
+        List<Criterion> criterions = hibernateCriterions.stream().map(criterion -> criterion.get()).filter(criterion -> criterion != null).collect(Collectors.toList());
         criterions.stream().forEach(criterion -> criteria.add(criterion));
         return criteria;
     }
