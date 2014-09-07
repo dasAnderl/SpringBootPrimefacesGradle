@@ -8,6 +8,11 @@ buildscript {
 }
 apply plugin: 'java'
 apply plugin: 'idea'
+//idea {
+//    module {
+//        inheritOutputDirs = true
+//    }
+//}
 apply plugin: 'war'
 apply plugin: 'maven'
 apply plugin: 'spring-boot'
@@ -51,6 +56,9 @@ dependencies {
             'com.google.guava:guava:18.0',
             'com.google.guava:guava-collections:r03',
             "javax.validation:validation-api:1.1.0.Final"
+
+    testCompile "org.springframework.boot:spring-boot-starter-test:$versionSpringBoot",
+            'junit:junit:jar:4.11'
 }
 
 task writeNewPom << {
@@ -66,5 +74,9 @@ task writeNewPom << {
             }
         }
     }.writeTo("$buildDir/newpom.xml")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
 }
 
