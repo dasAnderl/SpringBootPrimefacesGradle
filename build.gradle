@@ -7,6 +7,7 @@ buildscript {
     }
 }
 apply plugin: 'java'
+apply plugin: 'groovy'
 apply plugin: 'idea'
 //idea {
 //    module {
@@ -58,7 +59,8 @@ dependencies {
             "javax.validation:validation-api:1.1.0.Final"
 
     testCompile "org.springframework.boot:spring-boot-starter-test:$versionSpringBoot",
-            'junit:junit:jar:4.11'
+            'junit:junit:jar:4.11',
+            "org.codehaus.groovy:groovy:2.3.6"
 }
 
 task writeNewPom << {
