@@ -9,11 +9,6 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
-//idea {
-//    module {
-//        inheritOutputDirs = true
-//    }
-//}
 apply plugin: 'war'
 apply plugin: 'maven'
 apply plugin: 'spring-boot'
@@ -56,11 +51,12 @@ dependencies {
             "org.hibernate:hibernate-validator:5.1.2.Final",
             'com.google.guava:guava:18.0',
             'com.google.guava:guava-collections:r03',
-            "javax.validation:validation-api:1.1.0.Final"
+            "javax.validation:validation-api:1.1.0.Final",
+            "org.codehaus.groovy:groovy-all:2.3.6"
 
     testCompile "org.springframework.boot:spring-boot-starter-test:$versionSpringBoot",
-            'junit:junit:jar:4.11',
-            "org.codehaus.groovy:groovy:2.3.6"
+            'junit:junit:jar:4.11'
+
 }
 
 task writeNewPom << {
@@ -81,4 +77,5 @@ task writeNewPom << {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.0'
 }
-
+sourceSets.main.groovy.srcDirs += ["src/main/java"]
+sourceSets.test.groovy.srcDirs += ["src/test/java"]
