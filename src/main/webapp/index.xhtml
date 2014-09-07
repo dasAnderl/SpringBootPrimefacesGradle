@@ -30,6 +30,9 @@
                              update="@parent"/>
             <br/>
             <p:dataTable value="#{testEntityRepository.findAll()}" var="entity">
+                <p:column headerText="id">
+                    #{entity.id}
+                </p:column>
                 <p:column headerText="name">
                     #{entity.name}
                 </p:column>
