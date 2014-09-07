@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anderl.examples.scopes.jsf;
+package com.anderl.controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -22,6 +22,8 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class HelloWorldBean {
+
+
 	public String getHello() {
 		return "Hello from PrimeFaces and Spring Boot!";
 	}

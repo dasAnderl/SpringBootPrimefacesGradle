@@ -14,7 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.anderl.jsf.sample.searchExpressions;
+package com.anderl.controller;
+
+import com.anderl.dao.TestEntityRepository;
+import com.anderl.domain.TestEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -26,6 +31,10 @@ import javax.validation.constraints.Min;
 @ManagedBean
 @ViewScoped
 public class SmallNumberBean {
+
+    @Autowired
+    TestEntityRepository testEntityDao;
+
 	@Max(10)
 	@Min(50)
    private int smallNumber = 42;
@@ -43,6 +52,12 @@ public class SmallNumberBean {
 	   FacesContext.getCurrentInstance().addMessage("smallNumberID", fm);
 	   fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "This error message is oppressed, although it seems to be more important.");
 	   FacesContext.getCurrentInstance().addMessage("smallNumberID", fm);
+
+       TestEntity entity = new TestEntity();
+       entity.setName("name");
+       testEntityDao.save(entity);
+
+       System.out.println("hgjghjgjhg");
    }
 
 }

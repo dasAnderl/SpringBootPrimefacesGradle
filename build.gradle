@@ -17,8 +17,8 @@ version = '1.0'
 
 jar {
     manifest {
-        attributes 'Implementation-Title': 'PrimeFacesOnSpringBoot', 
-        'Implementation-Version': version
+        attributes 'Implementation-Title': 'PrimeFacesOnSpringBoot',
+                'Implementation-Version': version
     }
 }
 
@@ -27,22 +27,30 @@ repositories {
     maven { url "http://repository.primefaces.org" }
 }
 
+def versionSpring = "4.1.0.RELEASE"
+def versionSpringBoot = "1.1.6.RELEASE"
+def versionTomcat = "7.0.34"
+
 dependencies {
-    compile group: "org.springframework.boot", name: "spring-boot-starter", version: '1.1.4.RELEASE'
-    compile group: "org.springframework.boot", name: "spring-boot-starter-aop", version: '1.1.4.RELEASE'
-
-    compile group: "org.springframework", name: "spring-web", version: "4.1.0.RELEASE"
-    compile group: "org.springframework", name: "spring-webmvc", version: "4.1.0.RELEASE"
-
-	compile group: "org.apache.tomcat.embed", name: "tomcat-embed-core", version: '7.0.34'
-	compile group: "org.apache.tomcat.embed", name: "tomcat-embed-logging-juli", version: '7.0.34'
-	compile group: "org.apache.tomcat.embed", name: "tomcat-embed-jasper", version: '7.0.34'
-	
-	compile group: "org.primefaces", name: "primefaces", version: "5.0"
-	compile group: "com.sun.faces", name: "jsf-api", version: "2.+"
-	compile group: "com.sun.faces", name: "jsf-impl", version: "2.+"
-	compile group: "org.hibernate", name: "hibernate-validator", version: "5.1.2.Final"
-	compile group: "javax.validation", name: "validation-api", version: "1.1.0.Final"
+    compile "org.springframework.boot:spring-boot-starter:$versionSpringBoot",
+            "org.springframework.boot:spring-boot-starter-aop:$versionSpringBoot",
+            "org.springframework.boot:spring-boot-starter-data-jpa:$versionSpringBoot",
+            "org.springframework:spring-web:$versionSpring",
+            "org.springframework:spring-webmvc:$versionSpring",
+            'org.springframework.data:spring-data-jpa:1.6.4.RELEASE',
+            "org.apache.tomcat.embed:tomcat-embed-core:$versionTomcat",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:$versionTomcat",
+            "org.apache.tomcat.embed:tomcat-embed-jasper:$versionTomcat",
+            "com.h2database:h2:1.4.181",
+            'org.hibernate:hibernate-core:4.3.6.Final',
+            'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final',
+            "org.primefaces:primefaces:5.0",
+            "com.sun.faces:jsf-api:2.+",
+            "com.sun.faces:jsf-impl:2.+",
+            "org.hibernate:hibernate-validator:5.1.2.Final",
+            'com.google.guava:guava:18.0',
+            'com.google.guava:guava-collections:r03',
+            "javax.validation:validation-api:1.1.0.Final"
 }
 
 task writeNewPom << {
