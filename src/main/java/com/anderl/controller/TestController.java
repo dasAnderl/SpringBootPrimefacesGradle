@@ -7,11 +7,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import java.util.Date;
 import java.util.Random;
 
@@ -24,7 +20,7 @@ import java.util.Random;
 public class TestController {
 
     @Autowired
-    TestEntityRepository testEntityDao;
+    TestEntityRepository testEntityRepository;
 
     @Transactional
     public void saveNewTestEntity() {
@@ -33,6 +29,6 @@ public class TestController {
         TestEntity entity = new TestEntity();
         entity.setName("name"+new Date().toString());
         entity.setAge(new Random().nextInt());
-        testEntityDao.save(entity);
+        testEntityRepository.save(entity);
     }
 }

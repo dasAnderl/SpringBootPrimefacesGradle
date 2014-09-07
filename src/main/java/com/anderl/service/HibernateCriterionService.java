@@ -1,11 +1,13 @@
 package com.anderl.service;
 
+import com.anderl.domain.TestEntity;
 import com.anderl.hibernateext.HibernateCriterion;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
@@ -21,7 +23,7 @@ public class HibernateCriterionService {
     @Autowired
     EntityManager entityManager;
 
-    public Criteria buildCriteria(List<HibernateCriterion> hibernateCriterions) {
+    private Criteria buildCriteria(List<HibernateCriterion> hibernateCriterions) {
         Assert.notEmpty(hibernateCriterions);
         Session session = entityManager.unwrap(Session.class);
 
@@ -29,6 +31,11 @@ public class HibernateCriterionService {
         List<Criterion> criterions = hibernateCriterions.stream().map(criterion -> criterion.get()).collect(Collectors.toList());
         criterions.stream().forEach(criterion -> criteria.add(criterion));
         return criteria;
+    }
+
+    @Transactional
+    public List<TestEntity> getEntities(List<HibernateCriterion> hibernateCriterions) {
+        return buildCriteria(hibernateCriterions).list();
     }
 
 }
