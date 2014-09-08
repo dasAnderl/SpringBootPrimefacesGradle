@@ -3,8 +3,8 @@ package com.anderl.service
 import com.anderl.Application
 import com.anderl.dao.TestEntityRepository
 import com.anderl.domain.TestEntity
-import com.anderl.hibernateext.Criteria
-import com.anderl.hibernateext.HibernateCriterion
+import com.anderl.hibernate.ext.Criteria
+import com.anderl.hibernate.ext.HibernateCriterion
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

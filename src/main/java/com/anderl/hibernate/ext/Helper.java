@@ -1,4 +1,4 @@
-package com.anderl.hibernateext;
+package com.anderl.hibernate.ext;
 
 /**
  * Created by dasanderl on 06.09.14.

@@ -1,4 +1,4 @@
-package com.anderl.hibernateext;
+package com.anderl.hibernate.ext;
 
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.MatchMode;

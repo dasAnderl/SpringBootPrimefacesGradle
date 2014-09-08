@@ -2,8 +2,8 @@ package com.anderl.controller;
 
 import com.anderl.dao.TestEntityRepository;
 import com.anderl.domain.TestEntity;
-import com.anderl.hibernateext.Criteria;
-import com.anderl.hibernateext.HibernateCriterion;
+import com.anderl.hibernate.ext.Criteria;
+import com.anderl.hibernate.ext.HibernateCriterion;
 import com.anderl.service.HibernateCriterionService;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;

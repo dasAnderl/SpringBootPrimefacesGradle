@@ -1,7 +1,7 @@
 package com.anderl.service;
 
 import com.anderl.domain.TestEntity;
-import com.anderl.hibernateext.HibernateCriterion;
+import com.anderl.hibernate.ext.HibernateCriterion;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
