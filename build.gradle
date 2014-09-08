@@ -85,11 +85,20 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.0'
 }
 
+import org.apache.tools.ant.taskdefs.condition.Os
+boolean isWindows() {
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) return true
+}
+
 task bootShutdown() {
-    def port = applicationProperties["server.port"]
-    def command = "curl -X POST localhost:$port/shutdown"
-    def proc = command.execute()
-    proc.waitFor()
+    if (!isWindows()) {
+        def port = applicationProperties["server.port"]
+        def command = "curl -X POST localhost:$port/shutdown"
+        def proc = command.execute()
+        proc.waitFor()
+    } else {
+        println "please specify shutdown cmd for windows"
+    }
 }
 sourceSets.main.groovy.srcDirs += ["src/main/java"]
 sourceSets.test.groovy.srcDirs += ["src/test/java"]
