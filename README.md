@@ -1,8 +1,7 @@
 SpringBootPrimefacesGradle
 ==========================
 
-Example project based on Java8, Gradle, Spring, Boot, Jsf, Primefaces, Hibernate and H2 Db
+Example project based on Java8, Groovy, Gradle, Spring, Boot, Tomcat, Jsf, Primefaces, Hibernate and H2 Db
 
-to start call from cmd line: gradle bootRun
-
-if you run from intellij direcly stopping will not properly shutdown springboot app -> port clash
+to start call gradle task bootRun
+to stop call gradle task bootStop (just intellijs stop button does not work)
