@@ -43,12 +43,10 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-aop:$versionSpringBoot",
             "org.springframework.boot:spring-boot-starter-data-jpa:$versionSpringBoot",
             "org.springframework.boot:spring-boot-starter-actuator:$versionSpringBoot",
+            "org.springframework.boot:spring-boot-starter-jetty:$versionSpringBoot",
             "org.springframework:spring-web:$versionSpring",
             "org.springframework:spring-webmvc:$versionSpring",
             'org.springframework.data:spring-data-jpa:1.6.4.RELEASE',
-            "org.apache.tomcat.embed:tomcat-embed-core:$versionTomcat",
-            "org.apache.tomcat.embed:tomcat-embed-logging-juli:$versionTomcat",
-            "org.apache.tomcat.embed:tomcat-embed-jasper:$versionTomcat",
             "com.h2database:h2:1.4.181",
             'org.hibernate:hibernate-core:4.3.6.Final',
             'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final',
@@ -91,14 +89,12 @@ boolean isWindows() {
 }
 
 task bootShutdown() {
-    if (!isWindows()) {
-        def port = applicationProperties["server.port"]
-        def command = "curl -X POST localhost:$port/shutdown"
-        def proc = command.execute()
-        proc.waitFor()
-    } else {
-        println "please specify shutdown cmd for windows"
-    }
+    def port = applicationProperties["server.port"]
+    def command = "curl -X POST localhost:$port/shutdown"
+    if (isWindows())command = "curl.exe -X POST localhost:$port/shutdown"
+    println "shutdown cmd is $command"
+    def proc = command.execute()
+    proc.waitFor()
 }
 sourceSets.main.groovy.srcDirs += ["src/main/java"]
 sourceSets.test.groovy.srcDirs += ["src/test/java"]
