@@ -14,7 +14,7 @@ apply plugin: 'maven'
 apply plugin: 'spring-boot'
 
 sourceCompatibility = 1.8
-version = '1.0'
+version = '1.0-SNAPSHOT'
 
 //read springboot properties access prop: applicationProperties['my.prop']
 def applicationProperties = new Properties()
@@ -25,6 +25,8 @@ new File("$projectDir/src/main/resources/application.properties").withInputStrea
 repositories {
     mavenCentral()
     maven { url "http://repository.primefaces.org" }
+    maven { url "https://github.com/dasAnderl/maven-repo/raw/master/snapshots"}
+    maven { url "https://github.com/dasAnderl/maven-repo/raw/master/releases"}
 }
 
 dependencies {
@@ -44,7 +46,8 @@ dependencies {
             'com.google.guava:guava:18.0',
             'com.google.guava:guava-collections:r03',
             "javax.validation:validation-api",
-            "org.codehaus.groovy:groovy-all"
+            "org.codehaus.groovy:groovy-all",
+            "com.anderl:hibernate-ext-java8:1.0-SNAPSHOT"
 
     testCompile "org.springframework.boot:spring-boot-starter-test",
             'junit:junit:jar'
