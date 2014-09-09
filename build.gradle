@@ -16,13 +16,6 @@ apply plugin: 'spring-boot'
 sourceCompatibility = 1.8
 version = '1.0'
 
-jar {
-    manifest {
-        attributes 'Implementation-Title': 'PrimeFacesOnSpringBoot',
-                'Implementation-Version': version
-    }
-}
-
 //read springboot properties access prop: applicationProperties['my.prop']
 def applicationProperties = new Properties()
 new File("$projectDir/src/main/resources/application.properties").withInputStream {
