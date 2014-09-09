@@ -34,30 +34,27 @@ repositories {
     maven { url "http://repository.primefaces.org" }
 }
 
-def versionSpring = "4.1.0.RELEASE"
-def versionSpringBoot = "1.1.6.RELEASE"
-
 dependencies {
-    compile "org.springframework.boot:spring-boot-starter-data-jpa:$versionSpringBoot",
-            "org.springframework.boot:spring-boot-starter-actuator:$versionSpringBoot",
-            "org.springframework.boot:spring-boot-starter-jetty:$versionSpringBoot",
-            "org.springframework:spring-web:$versionSpring",
-            "org.springframework:spring-webmvc:$versionSpring",
-            'org.springframework.data:spring-data-jpa:1.6.4.RELEASE',
-            "com.h2database:h2:1.4.181",
-            'org.hibernate:hibernate-core:4.3.6.Final',
-            'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final',
+    compile "org.springframework.boot:spring-boot-starter-data-jpa",
+            "org.springframework.boot:spring-boot-starter-actuator",
+            "org.springframework.boot:spring-boot-starter-jetty",
+            "org.springframework:spring-web",
+            "org.springframework:spring-webmvc",
+            'org.springframework.data:spring-data-jpa',
+            "com.h2database:h2",
+            'org.hibernate:hibernate-core',
+            'org.hibernate.javax.persistence:hibernate-jpa-2.0-api',
             "org.primefaces:primefaces:5.0",
             "com.sun.faces:jsf-api:2.+",
             "com.sun.faces:jsf-impl:2.+",
-            "org.hibernate:hibernate-validator:5.1.2.Final",
+            "org.hibernate:hibernate-validator",
             'com.google.guava:guava:18.0',
             'com.google.guava:guava-collections:r03',
-            "javax.validation:validation-api:1.1.0.Final",
-            "org.codehaus.groovy:groovy-all:2.3.6"
+            "javax.validation:validation-api",
+            "org.codehaus.groovy:groovy-all"
 
-    testCompile "org.springframework.boot:spring-boot-starter-test:$versionSpringBoot",
-            'junit:junit:jar:4.11'
+    testCompile "org.springframework.boot:spring-boot-starter-test",
+            'junit:junit:jar'
 
 }
 
