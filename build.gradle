@@ -22,6 +22,13 @@ new File("$projectDir/src/main/resources/application.properties").withInputStrea
     stream -> applicationProperties.load(stream)
 }
 
+//refersh changing deps always
+configurations.all {
+    resolutionStrategy {
+        cacheChangingModulesFor 0, "seconds"
+    }
+}
+
 repositories {
     mavenCentral()
     maven { url "http://repository.primefaces.org" }
@@ -46,8 +53,8 @@ dependencies {
             'com.google.guava:guava:18.0',
             'com.google.guava:guava-collections:r03',
             "javax.validation:validation-api",
-            "org.codehaus.groovy:groovy-all",
-            "com.anderl:hibernate-ext-java8:1.0-SNAPSHOT"
+            "org.codehaus.groovy:groovy-all"
+    compile("com.anderl:hibernate-ext-java8:1.0-SNAPSHOT"){ changing = true }
 
     testCompile "org.springframework.boot:spring-boot-starter-test",
             'junit:junit:jar'
