@@ -25,7 +25,9 @@ import java.util.Map;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
-public class Application extends SpringBootServletInitializer implements ServletContextAware {
+public class Application
+//        extends SpringBootServletInitializer implements ServletContextAware
+{
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class);
@@ -67,10 +69,10 @@ public class Application extends SpringBootServletInitializer implements Servlet
         return customScopeConfigurer;
     }
 
-    @Override
-    public void setServletContext(ServletContext servletContext) {
-        servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
-    }
+//    @Override
+//    public void setServletContext(ServletContext servletContext) {
+//        servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
+//    }
 
 
 }

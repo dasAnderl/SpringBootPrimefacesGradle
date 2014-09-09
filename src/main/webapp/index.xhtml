@@ -30,7 +30,7 @@
                              update="@parent"/>
 
             <br/>
-            <p:dataTable value="#{testEntityRepository.findAll()}" var="entity">
+            <p:dataTable value="#{testEntityRepository.findByNameAndAge('nameTue Sep 09 15:11:28 CEST 2014', 847733423)}" var="entity">
                 <p:column headerText="id">
                     #{entity.id}
                 </p:column>
@@ -44,25 +44,7 @@
             <br/>
             Search by criterias
             <br/>
-            <p:inputText id="idCriterion" value="#{testController.idCriterion.value}"/>
-            <p:inputText id="nameCriterion" value="#{testController.nameCriterion.value}"/>
-            <p:inputText id="ageCriterion" value="#{testController.ageCriterion.value}"/>
-            <p:dataTable value="#{testController.search()}" var="entity">
-                <p:column headerText="id">
-                    #{entity.id}
-                </p:column>
-                <p:column headerText="name">
-                    #{entity.name}
-                </p:column>
-                <p:column headerText="age">
-                    #{entity.age}
-                </p:column>
-            </p:dataTable>
-            <p:commandButton validateClient="true" value="validate"
-                             process="@this, idCriterion, nameCriterion, ageCriterion"
-                             update="@parent:@parent"/>
-            <br/>
-            #{testController}
+
         </h:form>
     </h:body>
 </f:view>

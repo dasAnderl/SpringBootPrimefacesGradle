@@ -13,7 +13,12 @@ import java.util.List;
 public interface TestEntityRepository extends CrudRepository<TestEntity, Long> {
 
     List<TestEntity> findByName(String name);
+
     List<TestEntity> findByAge(int age);
+
+    List<TestEntity> findByNameAndAge(String name, int age);
+
+    List<TestEntity> findByNameOrAge(String name, int age);
 
 
 }
