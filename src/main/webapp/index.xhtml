@@ -30,7 +30,9 @@
                              update="@parent"/>
 
             <br/>
-            <p:dataTable value="#{testEntityRepository.findByNameAndAge('nameTue Sep 09 15:11:28 CEST 2014', 847733423)}" var="entity">
+            All entities
+            <br/>
+            <p:dataTable value="#{testEntityRepository.findAll()}" var="entity">
                 <p:column headerText="id">
                     #{entity.id}
                 </p:column>
@@ -42,7 +44,7 @@
                 </p:column>
             </p:dataTable>
             <br/>
-            Search by criterias
+
             <br/>
 
         </h:form>
