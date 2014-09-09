@@ -36,12 +36,9 @@ repositories {
 
 def versionSpring = "4.1.0.RELEASE"
 def versionSpringBoot = "1.1.6.RELEASE"
-def versionTomcat = "7.0.34"
 
 dependencies {
-    compile "org.springframework.boot:spring-boot-starter:$versionSpringBoot",
-            "org.springframework.boot:spring-boot-starter-aop:$versionSpringBoot",
-            "org.springframework.boot:spring-boot-starter-data-jpa:$versionSpringBoot",
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:$versionSpringBoot",
             "org.springframework.boot:spring-boot-starter-actuator:$versionSpringBoot",
             "org.springframework.boot:spring-boot-starter-jetty:$versionSpringBoot",
             "org.springframework:spring-web:$versionSpring",
@@ -62,21 +59,6 @@ dependencies {
     testCompile "org.springframework.boot:spring-boot-starter-test:$versionSpringBoot",
             'junit:junit:jar:4.11'
 
-}
-
-task writeNewPom << {
-    pom {
-        project {
-            inceptionYear '2014'
-            licenses {
-                license {
-                    name 'GNU General Public License, Version 3'
-                    url 'http://www.gnu.org/licenses'
-                    distribution 'repo'
-                }
-            }
-        }
-    }.writeTo("$buildDir/newpom.xml")
 }
 
 task wrapper(type: Wrapper) {
