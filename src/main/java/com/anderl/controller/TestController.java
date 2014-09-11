@@ -4,6 +4,8 @@ import com.anderl.dao.TestEntityRepository;
 import com.anderl.domain.TestEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,5 +32,11 @@ public class TestController {
         entity.setName("name"+new Date().toString());
         entity.setAge(new Random().nextInt());
         testEntityRepository.save(entity);
+    }
+
+    public String getUserName() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return user.getUsername();
+
     }
 }
