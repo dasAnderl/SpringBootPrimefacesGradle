@@ -24,7 +24,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private SecurityProperties security;
+    private SecurityProperties security; //needed, or login wont work
 
     @Override
     public void configure(WebSecurity web) throws Exception {
