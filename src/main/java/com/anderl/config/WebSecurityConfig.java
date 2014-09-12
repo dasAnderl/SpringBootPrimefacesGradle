@@ -23,9 +23,6 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private SecurityProperties security; //needed, or login wont work
-
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
@@ -44,7 +41,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/index.xhtml")
                 .permitAll()
                 .and()
-                .csrf()
+                .sessionManagement()
+                .sessionFixation()
+                .newSession()   // migrate session crates exeptions
+                .and()
+                .csrf()  //cross site request forgery, without disabling login doesnt work
                 .disable();
     }
 

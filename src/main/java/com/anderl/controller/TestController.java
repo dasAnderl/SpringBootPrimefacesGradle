@@ -2,6 +2,7 @@ package com.anderl.controller;
 
 import com.anderl.dao.TestEntityRepository;
 import com.anderl.domain.TestEntity;
+import com.anderl.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +25,9 @@ public class TestController {
     @Autowired
     TestEntityRepository testEntityRepository;
 
+    @Autowired
+    TestService testService;
+
     @Transactional
     public void saveNewTestEntity() {
 
@@ -35,8 +39,7 @@ public class TestController {
     }
 
     public String getUserName() {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return user.getUsername();
+        return testService.getUserNameFromService();
 
     }
 }
