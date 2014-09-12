@@ -4,12 +4,11 @@ package com.anderl.helper;
  * Created by dasanderl on 07.09.14.
  */
 
-import java.util.Map;
-
-import javax.faces.context.FacesContext;
-
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
+
+import javax.faces.context.FacesContext;
+import java.util.Map;
 
 public class ViewScope implements Scope {
 

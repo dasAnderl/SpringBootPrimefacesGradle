@@ -5,8 +5,6 @@ import com.anderl.domain.TestEntity;
 import com.anderl.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,7 +31,7 @@ public class TestController {
 
         System.out.println("saving new entity");
         TestEntity entity = new TestEntity();
-        entity.setName("name"+new Date().toString());
+        entity.setName("name" + new Date().toString());
         entity.setAge(new Random().nextInt());
         testEntityRepository.save(entity);
     }
