@@ -9,7 +9,6 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
-apply plugin: 'war'
 apply plugin: 'maven'
 apply plugin: 'spring-boot'
 
@@ -63,7 +62,7 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.0'
+    gradleVersion = '2.1'
 }
 
 import org.apache.tools.ant.taskdefs.condition.Os
@@ -80,7 +79,7 @@ task bootShutdown() {
     proc.waitFor()
 }
 
-task bootRestart() {
+task bootRestart << {
     bootShutdown.execute()
     clean.execute()
     compileJava.execute()

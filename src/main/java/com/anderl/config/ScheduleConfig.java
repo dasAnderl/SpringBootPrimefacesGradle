@@ -11,9 +11,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableScheduling
 public class ScheduleConfig {
 
-
     @Scheduled(fixedDelay = 10000)
     public void testScheduleTask() {
-        System.out.println("in scheduled task");
     }
 }
