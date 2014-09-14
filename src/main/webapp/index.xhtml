@@ -1,6 +1,7 @@
 <f:view xmlns="http://www.w3c.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
         xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
         >
+
     <h:head/>
     <h:body>
         <h:form prependId="false">
@@ -43,8 +44,60 @@
                     #{entity.age}
                 </p:column>
             </p:dataTable>
+
             <br/>
-            Cuurent user name : #{testController.userName}
+            <p:dataTable var="entity" value="#{testEntityRepository.findAll()}">
+                <f:facet name="header">
+                    Sub table
+                </f:facet>
+
+                <p:columnGroup type="header">
+                    <p:row>
+                        <p:column rowspan="2" headerText="Team"/>
+                        <p:column colspan="2" headerText="Stats"/>
+                    </p:row>
+                    <p:row>
+                        <p:column headerText="Wins"/>
+                        <p:column headerText="Losses"/>
+                    </p:row>
+                </p:columnGroup>
+
+                <p:subTable var="stats" value="#{entity.nestedEntitiesBatch10}">
+                    <f:facet name="header">
+                        <h:outputText value="#{entity.name}"/>
+                    </f:facet>
+                    <p:column>
+                        <h:outputText value="#{stats.nestedName}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{stats.nestedAge}"/>
+                    </p:column>
+                </p:subTable>
+                <!--<p:subTable var="stats" value="#{team.stats}">-->
+                <!--<f:facet name="header">-->
+                <!--<h:outputText value="#{team.name}" />-->
+                <!--</f:facet>-->
+                <!--<p:column>-->
+                <!--<h:outputText value="#{stats.season}" />-->
+                <!--</p:column>-->
+                <!--<p:column>-->
+                <!--<h:outputText value="#{stats.win}" />-->
+                <!--</p:column>-->
+                <!--<p:column>-->
+                <!--<h:outputText value="#{stats.loss}" />-->
+                <!--</p:column>-->
+                <!--<p:columnGroup type="footer">-->
+                <!--<p:row>-->
+                <!--<p:column footerText="Totals: " style="text-align:right"/>-->
+                <!--<p:column footerText="#{team.allWins}" />-->
+                <!--<p:column footerText="#{team.allLosses}" />-->
+                <!--</p:row>-->
+                <!--</p:columnGroup>-->
+                <!--</p:subTable>-->
+            </p:dataTable>
+
+            <br/>
+            Current user name : #{testController.userName}
 
             <br/>
 
