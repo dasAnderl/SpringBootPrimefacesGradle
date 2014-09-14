@@ -1,5 +1,7 @@
 package com.anderl.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
@@ -10,8 +12,10 @@ import javax.persistence.ManyToOne;
 public class NestedEntity extends _AbstractEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Entity entityBatch10;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Entity entityNoBatch;
 
     private String nestedName;
@@ -52,10 +56,9 @@ public class NestedEntity extends _AbstractEntity {
     @Override
     public String toString() {
         return "NestedEntity{" +
-                "testEntityBatch10=" + entityBatch10 +
-                ", testEntityNoBatch=" + entityNoBatch +
+                "id=" + getId() +
                 ", nestedName='" + nestedName + '\'' +
-                ", nestedAge='" + nestedAge + '\'' +
+                ", nestedAge=" + nestedAge +
                 '}';
     }
 }

@@ -2,9 +2,7 @@ package com.anderl.domain;
 
 import com.anderl.DomainTestApplication;
 import com.anderl.dao.TestEntityRepository;
-import com.google.common.collect.Lists;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -30,33 +28,7 @@ public class EntityTest {
     TestEntityRepository testEntityRepository;
     @Autowired
     EntityManager entityManager;
-    Entity entity = EntityBuilder.aTestEntity()
-            .withAge(age)
-            .withName(name)
-            .withNestedEntitiesBatch10(
-                    Lists.newArrayList(
-                            NestedEntityBuilder.aNestedEntity()
-                                    .withNestedAge(nestedAge)
-                                    .withNestedName(nestedName)
-                                    .build(),
-                            NestedEntityBuilder.aNestedEntity()
-                                    .withNestedAge(nestedAge)
-                                    .withNestedName(nestedName)
-                                    .build()
-                    )
-            )
-            .withNestedEntitiesNoBatch(
-                    Lists.newArrayList(
-                            NestedEntityBuilder.aNestedEntity()
-                                    .withNestedAge(nestedAge)
-                                    .withNestedName(nestedName)
-                                    .build(),
-                            NestedEntityBuilder.aNestedEntity()
-                                    .withNestedAge(nestedAge)
-                                    .withNestedName(nestedName)
-                                    .build()
-                    )
-            ).build();
+    Entity entity = EntityProvider.getRandomEntity();
 
     @Before
     public void test1Setup() throws Exception {
@@ -70,9 +42,7 @@ public class EntityTest {
     @Transactional
     public void test2Verfiy() {
 
-        Entity entity = (Entity) entityManager.unwrap(Session.class).createCriteria(Entity.class)
-                .add(Restrictions.eq("name", name))
-                .uniqueResult();
+        Entity entity = testEntityRepository.findAll().iterator().next();
 
         for (NestedEntity nestedEntity : entity.getNestedEntitiesNoBatch()) {
             System.out.println(nestedEntity.getNestedAge());
@@ -81,11 +51,5 @@ public class EntityTest {
         for (NestedEntity nestedEntity : entity.getNestedEntitiesBatch10()) {
             System.out.println(nestedEntity.getNestedAge());
         }
-
-//        entity.getNestedEntitiesNoBatch().forEach(nested -> System.out.println(nested.getNestedName()));
-//
-//        entity.getNestedEntitiesBatch10().forEach(nested -> System.out.println(nested.getNestedName()));
-
-
     }
 }

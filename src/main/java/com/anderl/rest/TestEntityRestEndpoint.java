@@ -2,7 +2,7 @@ package com.anderl.rest;
 
 import com.anderl.dao.TestEntityRepository;
 import com.anderl.domain.Entity;
-import com.anderl.domain.EntityBuilder;
+import com.anderl.domain.EntityProvider;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ import java.util.List;
  * Created by dasanderl on 13.09.14.
  */
 @Controller
-@RequestMapping("/rest/testEntity")
+@RequestMapping("/rest/entity")
 public class TestEntityRestEndpoint {
 
     @Autowired
@@ -40,7 +40,7 @@ public class TestEntityRestEndpoint {
     @RequestMapping(value = "/addTestEntity", method = RequestMethod.GET, params = {"name", "age"})
     public ResponseEntity<String> addTestEntity(@RequestParam String name, @RequestParam int age) {
 
-        Entity entity = EntityBuilder.aTestEntity().withName(name).withAge(age).build();
+        Entity entity = EntityProvider.getRandomEntity();
         testEntityRepository.save(entity);
         return new ResponseEntity<>("created new TestEntity", HttpStatus.OK);
     }
