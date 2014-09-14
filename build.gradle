@@ -31,8 +31,8 @@ configurations.all {
 repositories {
     mavenCentral()
     maven { url "http://repository.primefaces.org" }
-    maven { url "https://github.com/dasAnderl/maven-repo/raw/master/snapshots"}
-    maven { url "https://github.com/dasAnderl/maven-repo/raw/master/releases"}
+    maven { url "https://github.com/dasAnderl/maven-repo/raw/master/snapshots" }
+    maven { url "https://github.com/dasAnderl/maven-repo/raw/master/releases" }
 }
 
 dependencies {
@@ -54,10 +54,12 @@ dependencies {
             'com.google.guava:guava-collections:r03',
             "javax.validation:validation-api",
             "org.codehaus.groovy:groovy-all"
-    compile("com.anderl:hibernate-ext-java8:1.0-SNAPSHOT"){ changing = true }
+    compile("com.anderl:hibernate-ext-java8:1.0-SNAPSHOT") { changing = true }
 
     testCompile "org.springframework.boot:spring-boot-starter-test",
-            'junit:junit:jar'
+            'com.googlecode.jmockit:jmockit:1.7',
+            'junit:junit:jar',
+            'com.jayway.jsonpath:json-path:0.9.1'
 
 }
 
@@ -66,6 +68,7 @@ task wrapper(type: Wrapper) {
 }
 
 import org.apache.tools.ant.taskdefs.condition.Os
+
 boolean isWindows() {
     if (Os.isFamily(Os.FAMILY_WINDOWS)) return true
 }
@@ -73,7 +76,7 @@ boolean isWindows() {
 task bootShutdown() {
     def port = applicationProperties["server.port"]
     def command = "curl -X POST localhost:$port/shutdown"
-    if (isWindows())command = "curl.exe -X POST localhost:$port/shutdown"
+    if (isWindows()) command = "curl.exe -X POST localhost:$port/shutdown"
     println "shutdown cmd is $command"
     def proc = command.execute()
     proc.waitFor()
