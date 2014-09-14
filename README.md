@@ -12,11 +12,12 @@ SpringBootPrimefacesGradle
 Example project based on Java8, Groovy, Gradle, SpringBoot, Jetty, Jsf, Primefaces, Hibernate and H2 Db
 
 to start call gradle task bootRun
-
 to stop call gradle task bootStop (just intellijs stop button does not work)
 
+an example jsf view is implemented, call localhost:port/index.jsf
 
-test examples are in place, also using spring mockmvc to test the rest endpoints
+
+test examples are in place, also using spring mockmvc to test the rest endpoints (localhost:port/rest/...)
 
 as mock lib here jmockit is used and not standard spring mockito
 
