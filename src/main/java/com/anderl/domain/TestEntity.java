@@ -1,6 +1,12 @@
 package com.anderl.domain;
 
+import org.hibernate.annotations.BatchSize;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 /**
  * Created by dasanderl on 07.09.14.
@@ -10,6 +16,13 @@ public class TestEntity extends _AbstractEntity {
 
     private String name;
     private int age;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "testEntityBatch10", cascade = CascadeType.ALL, orphanRemoval = true)
+    @BatchSize(size = 10)
+    private List<NestedEntity> nestedEntitiesBatch10;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "testEntityNoBatch", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<NestedEntity> nestedEntitiesNoBatch;
 
     public String getName() {
         return name;
@@ -27,12 +40,29 @@ public class TestEntity extends _AbstractEntity {
         this.age = age;
     }
 
+    public List<NestedEntity> getNestedEntitiesBatch10() {
+        return nestedEntitiesBatch10;
+    }
+
+    public void setNestedEntitiesBatch10(List<NestedEntity> nestedEntitiesBatch10) {
+        this.nestedEntitiesBatch10 = nestedEntitiesBatch10;
+    }
+
+    public List<NestedEntity> getNestedEntitiesNoBatch() {
+        return nestedEntitiesNoBatch;
+    }
+
+    public void setNestedEntitiesNoBatch(List<NestedEntity> nestedEntitiesNoBatch) {
+        this.nestedEntitiesNoBatch = nestedEntitiesNoBatch;
+    }
+
     @Override
     public String toString() {
         return "TestEntity{" +
-                "id='" + getId() + '\'' +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", nestedEntitiesBatch10=" + nestedEntitiesBatch10 +
+                ", nestedEntitiesNoBatch=" + nestedEntitiesNoBatch +
                 '}';
     }
 }

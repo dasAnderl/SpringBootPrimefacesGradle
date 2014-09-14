@@ -1,15 +1,17 @@
 package com.anderl.controller;
 
 import com.anderl.dao.TestEntityRepository;
+import com.anderl.domain.NestedEntityBuilder;
 import com.anderl.domain.TestEntity;
+import com.anderl.domain.TestEntityBuilder;
 import com.anderl.service.TestService;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.faces.bean.ManagedBean;
-import java.util.Date;
 import java.util.Random;
 
 /**
@@ -30,9 +32,33 @@ public class TestController {
     public void saveNewTestEntity() {
 
         System.out.println("saving new entity");
-        TestEntity entity = new TestEntity();
-        entity.setName("name" + new Date().toString());
-        entity.setAge(new Random().nextInt());
+        TestEntity entity = TestEntityBuilder.aTestEntity()
+                .withAge(new Random().nextInt())
+                .withName(new Random().nextInt(1) + "")
+                .withNestedEntitiesBatch10(
+                        Lists.newArrayList(
+                                NestedEntityBuilder.aNestedEntity()
+                                        .withNestedAge(new Random().nextInt())
+                                        .withNestedName(new Random().nextInt(1) + "")
+                                        .build(),
+                                NestedEntityBuilder.aNestedEntity()
+                                        .withNestedAge(new Random().nextInt())
+                                        .withNestedName(new Random().nextInt(1) + "")
+                                        .build()
+                        )
+                )
+                .withNestedEntitiesNoBatch(
+                        Lists.newArrayList(
+                                NestedEntityBuilder.aNestedEntity()
+                                        .withNestedAge(new Random().nextInt())
+                                        .withNestedName(new Random().nextInt(1) + "")
+                                        .build(),
+                                NestedEntityBuilder.aNestedEntity()
+                                        .withNestedAge(new Random().nextInt())
+                                        .withNestedName(new Random().nextInt(1) + "")
+                                        .build()
+                        )
+                ).build();
         testEntityRepository.save(entity);
     }
 
