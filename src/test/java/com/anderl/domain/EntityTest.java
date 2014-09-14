@@ -20,7 +20,7 @@ import javax.persistence.EntityManager;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = DomainTestApplication.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestEntityTest {
+public class EntityTest {
 
     private static int age = 1217;
     private static String name = "name";
@@ -30,7 +30,7 @@ public class TestEntityTest {
     TestEntityRepository testEntityRepository;
     @Autowired
     EntityManager entityManager;
-    TestEntity testEntity = TestEntityBuilder.aTestEntity()
+    Entity entity = EntityBuilder.aTestEntity()
             .withAge(age)
             .withName(name)
             .withNestedEntitiesBatch10(
@@ -60,9 +60,9 @@ public class TestEntityTest {
 
     @Before
     public void test1Setup() throws Exception {
-        testEntityRepository.save(testEntity);
+        testEntityRepository.save(entity);
         entityManager.unwrap(Session.class).flush();
-        entityManager.unwrap(Session.class).evict(testEntity);
+        entityManager.unwrap(Session.class).evict(entity);
 
     }
 
@@ -70,7 +70,7 @@ public class TestEntityTest {
     @Transactional
     public void test2Verfiy() {
 
-        TestEntity entity = (TestEntity) entityManager.unwrap(Session.class).createCriteria(TestEntity.class)
+        Entity entity = (Entity) entityManager.unwrap(Session.class).createCriteria(Entity.class)
                 .add(Restrictions.eq("name", name))
                 .uniqueResult();
 

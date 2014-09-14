@@ -17,7 +17,7 @@
 package com.anderl.controller;
 
 import com.anderl.dao.TestEntityRepository;
-import com.anderl.domain.TestEntity;
+import com.anderl.domain.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -54,7 +54,7 @@ public class SmallNumberBean {
 	   fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "This error message is oppressed, although it seems to be more important.");
 	   FacesContext.getCurrentInstance().addMessage("smallNumberID", fm);
 
-       TestEntity entity = new TestEntity();
+       Entity entity = new Entity();
        entity.setName("name");
        testEntityDao.save(entity);
 

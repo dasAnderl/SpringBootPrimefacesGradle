@@ -1,8 +1,8 @@
 package com.anderl.rest;
 
 import com.anderl.dao.TestEntityRepository;
-import com.anderl.domain.TestEntity;
-import com.anderl.domain.TestEntityBuilder;
+import com.anderl.domain.Entity;
+import com.anderl.domain.EntityBuilder;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,23 +25,23 @@ public class TestEntityRestEndpoint {
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public List<TestEntity> findAll() {
+    public List<Entity> findAll() {
         return Lists.newArrayList(testEntityRepository.findAll());
     }
 
     @RequestMapping(value = "/getByAgePath/{age}", method = RequestMethod.GET)
-    public ResponseEntity<TestEntity> getByAgePath(@PathVariable int age) {
+    public ResponseEntity<Entity> getByAgePath(@PathVariable int age) {
 
-        List<TestEntity> testEntities = testEntityRepository.findByAge(age);
-        TestEntity testEntity = testEntities.isEmpty() ? null : testEntities.get(0);
-        return new ResponseEntity<>(testEntity, HttpStatus.OK);
+        List<Entity> testEntities = testEntityRepository.findByAge(age);
+        Entity entity = testEntities.isEmpty() ? null : testEntities.get(0);
+        return new ResponseEntity<>(entity, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/addTestEntity", method = RequestMethod.GET, params = {"name", "age"})
     public ResponseEntity<String> addTestEntity(@RequestParam String name, @RequestParam int age) {
 
-        TestEntity testEntity = TestEntityBuilder.aTestEntity().withName(name).withAge(age).build();
-        testEntityRepository.save(testEntity);
+        Entity entity = EntityBuilder.aTestEntity().withName(name).withAge(age).build();
+        testEntityRepository.save(entity);
         return new ResponseEntity<>("created new TestEntity", HttpStatus.OK);
     }
 }

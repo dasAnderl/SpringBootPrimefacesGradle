@@ -1,7 +1,7 @@
 package com.anderl.rest;
 
 import com.anderl.dao.TestEntityRepository;
-import com.anderl.domain.TestEntityBuilder;
+import com.anderl.domain.EntityBuilder;
 import com.google.common.collect.Lists;
 import mockit.Injectable;
 import mockit.NonStrictExpectations;
@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @FixMethodOrder
-public class TestEntityRestEndpointTest {
+public class EntityRestEndpointTest {
 
     @Tested
     TestEntityRestEndpoint testEntityRestEndpoint;
@@ -38,7 +38,7 @@ public class TestEntityRestEndpointTest {
         new NonStrictExpectations() {{
             testEntityRepository.findAll();
             result = Lists.newArrayList(
-                    TestEntityBuilder.aTestEntity()
+                    EntityBuilder.aTestEntity()
                             .withId(id)
                             .withAge(age)
                             .withName(name)

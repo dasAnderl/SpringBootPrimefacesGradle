@@ -4,8 +4,8 @@ package com.anderl.domain;
  * Created by dasanderl on 14.09.14.
  */
 public class NestedEntityBuilder {
-    private TestEntity testEntityBatch10;
-    private TestEntity testEntityNoBatch;
+    private Entity entityBatch10;
+    private Entity entityNoBatch;
     private String nestedName;
     private int nestedAge;
     private long id;
@@ -17,13 +17,13 @@ public class NestedEntityBuilder {
         return new NestedEntityBuilder();
     }
 
-    public NestedEntityBuilder withTestEntityBatch10(TestEntity testEntityBatch10) {
-        this.testEntityBatch10 = testEntityBatch10;
+    public NestedEntityBuilder withTestEntityBatch10(Entity entityBatch10) {
+        this.entityBatch10 = entityBatch10;
         return this;
     }
 
-    public NestedEntityBuilder withTestEntityNoBatch(TestEntity testEntityNoBatch) {
-        this.testEntityNoBatch = testEntityNoBatch;
+    public NestedEntityBuilder withTestEntityNoBatch(Entity entityNoBatch) {
+        this.entityNoBatch = entityNoBatch;
         return this;
     }
 
@@ -44,8 +44,8 @@ public class NestedEntityBuilder {
 
     public NestedEntity build() {
         NestedEntity nestedEntity = new NestedEntity();
-        nestedEntity.setTestEntityBatch10(testEntityBatch10);
-        nestedEntity.setTestEntityNoBatch(testEntityNoBatch);
+        nestedEntity.setEntityBatch10(entityBatch10);
+        nestedEntity.setEntityNoBatch(entityNoBatch);
         nestedEntity.setNestedName(nestedName);
         nestedEntity.setNestedAge(nestedAge);
         nestedEntity.setId(id);

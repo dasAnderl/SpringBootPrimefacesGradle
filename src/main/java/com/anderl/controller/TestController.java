@@ -1,9 +1,9 @@
 package com.anderl.controller;
 
 import com.anderl.dao.TestEntityRepository;
+import com.anderl.domain.Entity;
+import com.anderl.domain.EntityBuilder;
 import com.anderl.domain.NestedEntityBuilder;
-import com.anderl.domain.TestEntity;
-import com.anderl.domain.TestEntityBuilder;
 import com.anderl.service.TestService;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class TestController {
     public void saveNewTestEntity() {
 
         System.out.println("saving new entity");
-        TestEntity entity = TestEntityBuilder.aTestEntity()
+        Entity entity = EntityBuilder.aTestEntity()
                 .withAge(new Random().nextInt())
                 .withName(new Random().nextInt(1) + "")
                 .withNestedEntitiesBatch10(
