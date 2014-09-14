@@ -26,6 +26,7 @@ configurations.all {
     resolutionStrategy {
         cacheChangingModulesFor 0, "seconds"
     }
+    exclude group: 'org.mockito'
 }
 
 repositories {
@@ -83,7 +84,7 @@ task bootStop() {
 }
 
 task bootRestart << {
-    bootShutdown.execute()
+    bootStop.execute()
     clean.execute()
     compileJava.execute()
     compileGroovy.execute()
