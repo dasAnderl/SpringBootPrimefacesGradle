@@ -9,7 +9,7 @@ Check it out yourself.
 SpringBootPrimefacesGradle
 ==========================
 
-Example project based on Java8, Groovy, Gradle, SpringBoot, Tomcat, Jsf, Primefaces, Hibernate and H2 Db
+Example project based on Java8, Groovy, Gradle, SpringBoot, Jetty, Jsf, Primefaces, Hibernate and H2 Db
 
 to start call gradle task bootRun
 
