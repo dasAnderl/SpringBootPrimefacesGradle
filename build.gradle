@@ -73,7 +73,7 @@ boolean isWindows() {
     if (Os.isFamily(Os.FAMILY_WINDOWS)) return true
 }
 
-task bootShutdown() {
+task bootStop() {
     def port = applicationProperties["server.port"]
     def command = "curl -X POST localhost:$port/shutdown"
     if (isWindows()) command = "curl.exe -X POST localhost:$port/shutdown"
