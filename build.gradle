@@ -46,7 +46,7 @@ dependencies {
             'org.springframework.data:spring-data-jpa',
             "com.h2database:h2",
             'org.hibernate:hibernate-core',
-            'org.hibernate.javax.persistence:hibernate-jpa-2.0-api',
+            'org.hibernate.javax.persistence:hibernate-jpa-2.1-api',
             "org.primefaces:primefaces:5.0",
             "com.sun.faces:jsf-api:2.+",
             "com.sun.faces:jsf-impl:2.+",
@@ -55,7 +55,7 @@ dependencies {
             'com.google.guava:guava-collections:r03',
             "javax.validation:validation-api",
             "org.codehaus.groovy:groovy-all"
-    compile("com.anderl:hibernate-ext-java8:1.0-SNAPSHOT") { changing = true }
+//    compile("com.anderl:hibernate-ext-java8:1.0-SNAPSHOT") { changing = true }
 
     testCompile "org.springframework.boot:spring-boot-starter-test",
             'com.googlecode.jmockit:jmockit:1.7',
