@@ -43,6 +43,8 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-actuator",
             "org.springframework.boot:spring-boot-starter-jetty",
             "org.springframework.boot:spring-boot-starter-security",
+            "org.springframework.boot:spring-boot-starter-logging",
+            "org.springframework.boot:spring-boot-starter-amqp",
             "org.springframework:spring-web:$versionSpring",
             "org.springframework:spring-webmvc:$versionSpring",
             "org.springframework.data:spring-data-jpa:1.7.0.RELEASE",
@@ -87,6 +89,18 @@ task bootStop() {
     def proc = command.execute()
     proc.waitFor()
 }
+
+//task rabbitMqStart() {
+//    def command2 = "rabbitmq-server -detached"
+//    def proc2 = command2.execute()
+//    proc2.waitFor()
+//}
+//
+//task rabbitMqStop() {
+//    def command = "rabbitmqctl stop"
+//    def proc = command.execute()
+//    proc.waitFor()
+//}
 
 sourceSets.main.java.srcDirs = []
 sourceSets.test.java.srcDirs = []
