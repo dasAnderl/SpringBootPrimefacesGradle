@@ -36,14 +36,16 @@ repositories {
     maven { url "https://github.com/dasAnderl/maven-repo/raw/master/releases" }
 }
 
+def versionSpring = "4.1.0.RELEASE"
+
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-data-jpa",
             "org.springframework.boot:spring-boot-starter-actuator",
             "org.springframework.boot:spring-boot-starter-jetty",
             "org.springframework.boot:spring-boot-starter-security",
-            "org.springframework:spring-web",
-            "org.springframework:spring-webmvc",
-            'org.springframework.data:spring-data-jpa',
+            "org.springframework:spring-web:$versionSpring",
+            "org.springframework:spring-webmvc:$versionSpring",
+            "org.springframework.data:spring-data-jpa:1.7.0.RELEASE",
             "com.h2database:h2",
             'org.hibernate:hibernate-core',
             'org.hibernate.javax.persistence:hibernate-jpa-2.1-api',
