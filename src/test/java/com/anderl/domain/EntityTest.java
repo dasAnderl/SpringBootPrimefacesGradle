@@ -20,10 +20,6 @@ import javax.persistence.EntityManager;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EntityTest {
 
-    private static int age = 1217;
-    private static String name = "name";
-    private static int nestedAge = 199999;
-    private static String nestedName = "nestedName";
     @Autowired
     TestEntityRepository testEntityRepository;
     @Autowired
@@ -31,7 +27,7 @@ public class EntityTest {
     Entity entity = EntityProvider.getRandomEntity();
 
     @Before
-    public void test1Setup() throws Exception {
+    public void save() throws Exception {
         testEntityRepository.save(entity);
         entityManager.unwrap(Session.class).flush();
         entityManager.unwrap(Session.class).evict(entity);
@@ -40,7 +36,7 @@ public class EntityTest {
 
     @Test
     @Transactional
-    public void test2Verfiy() {
+    public void load() {
 
         Entity entity = testEntityRepository.findAll().iterator().next();
 

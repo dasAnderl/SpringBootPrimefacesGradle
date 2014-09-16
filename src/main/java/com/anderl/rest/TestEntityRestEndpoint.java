@@ -39,9 +39,8 @@ public class TestEntityRestEndpoint {
 
     @RequestMapping(value = "/addTestEntity", method = RequestMethod.GET, params = {"name", "age"})
     public ResponseEntity<String> addTestEntity(@RequestParam String name, @RequestParam int age) {
-
         Entity entity = EntityProvider.getRandomEntity();
-        testEntityRepository.save(entity);
-        return new ResponseEntity<>("created new TestEntity", HttpStatus.OK);
+        entity = testEntityRepository.save(entity);
+        return new ResponseEntity<>("created new TestEntity with id "+entity.getId(), HttpStatus.OK);
     }
 }
