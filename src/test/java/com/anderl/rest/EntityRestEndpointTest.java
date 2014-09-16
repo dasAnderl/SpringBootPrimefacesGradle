@@ -6,18 +6,17 @@ import com.anderl.domain.EntityProvider;
 import com.google.common.collect.Lists;
 import mockit.Expectations;
 import mockit.Injectable;
-import mockit.NonStrictExpectations;
 import mockit.Tested;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.ArrayList;
+
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @FixMethodOrder
 public class EntityRestEndpointTest {
@@ -34,11 +33,12 @@ public class EntityRestEndpointTest {
     public void testFindAll() throws Exception {
         mockMvc = MockMvcBuilders.standaloneSetup(testEntityRestEndpoint).build();
 
+        ArrayList<Entity> entities = Lists.newArrayList(
+                EntityProvider.getRandomEntity()
+                , EntityProvider.getRandomEntity());
         new Expectations() {{
             testEntityRepository.findAll();
-            result = Lists.newArrayList(
-                    EntityProvider.getRandomEntity()
-                    , EntityProvider.getRandomEntity());
+            result = entities;
         }};
 
         mockMvc.perform(get("/rest/entity/findAll"))
@@ -46,10 +46,10 @@ public class EntityRestEndpointTest {
                 .andExpect(jsonPath("$", hasSize(2)))
 //                        conversion issue here
 //                .andExpect(jsonPath("$[0].id", is(id)))
-                .andExpect(jsonPath("$[0].name", containsString("name")))
-                .andExpect(jsonPath("$[0].age", is(greaterThan(-1))))
-                .andExpect(jsonPath("$[1].name", containsString("name")))
-                .andExpect(jsonPath("$[1].age", is(greaterThan(-1))));
+                .andExpect(jsonPath("$[0].name", is(entities.get(0).getName())))
+                .andExpect(jsonPath("$[0].age", is(entities.get(0).getAge())))
+                .andExpect(jsonPath("$[1].name", is(entities.get(1).getName())))
+                .andExpect(jsonPath("$[1].age", is(entities.get(1).getAge())));
     }
 
     @Test
@@ -62,13 +62,13 @@ public class EntityRestEndpointTest {
             result = Lists.newArrayList(randomEntity);
         }};
 
-        mockMvc.perform(get("/rest/entity/findByAge/" + age))
+        mockMvc.perform(get("/rest/entity/getByAgePath/" + age))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
+//                .andExpect(jsonPath("$", hasSize(1)))
 //                        conversion issue here
 //                .andExpect(jsonPath("$[0].id", is(id)))
-                .andExpect(jsonPath("$[0].name", containsString("name")))
-                .andExpect(jsonPath("$[0].age", is(greaterThan(-1))));
+                .andExpect(jsonPath("$.name", is(randomEntity.getName())))
+                .andExpect(jsonPath("$.age", is(age)));
     }
 
     @Test
@@ -81,7 +81,8 @@ public class EntityRestEndpointTest {
             result = randomEntity;
         }};
 
-        mockMvc.perform(get(String.format("/rest/entity/addTestEntity?name=%s&age=%d", randomEntity.getName(), randomEntity.getAge())))
+        mockMvc.perform(get(
+                String.format("/rest/entity/addTestEntity?name=%s&age=%d", randomEntity.getName(), randomEntity.getAge())))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("created new TestEntity with id "+id)));
     }
