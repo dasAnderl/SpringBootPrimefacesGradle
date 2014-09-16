@@ -24,15 +24,25 @@ public class WebJsfConfig {
     public static CustomScopeConfigurer getViewScopeConfigurer() {
         CustomScopeConfigurer customScopeConfigurer = new CustomScopeConfigurer();
         Map<String, Object> view = Maps.newHashMap();
-        view.put("view", new ViewScope());
+        view.put("view", viewScope());
         customScopeConfigurer.setScopes(view);
         return customScopeConfigurer;
     }
 
     @Bean
+    public static ViewScope viewScope() {
+        return new ViewScope();
+    }
+
+    @Bean
+    public FacesServlet facesServlet() {
+        return new FacesServlet();
+    }
+
+    @Bean
     public ServletRegistrationBean facesServletRegistration() {
         ServletRegistrationBean registration = new ServletRegistrationBean(
-                new FacesServlet(), "*.xhtml", "*.jsf");
+                facesServlet(), "*.xhtml", "*.jsf");
         registration.setLoadOnStartup(1);
         return registration;
     }
@@ -40,7 +50,12 @@ public class WebJsfConfig {
     @Bean
     public ServletListenerRegistrationBean<ConfigureListener> jsfConfigureListener() {
         return new ServletListenerRegistrationBean<>(
-                new ConfigureListener());
+                configureListener());
+    }
+
+    @Bean
+    public ConfigureListener configureListener() {
+        return new ConfigureListener();
     }
 
     @Bean
