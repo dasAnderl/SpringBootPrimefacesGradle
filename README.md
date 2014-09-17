@@ -38,9 +38,14 @@ Things to come:
 ===============
 
 -open entitymanager in conversation fo long running business processes
+
 -logging with log4j2 or logback
+
 -flexible search/paging engine
+
 -environment specific config
+
 -configuration reloading mechanism (maybe via JMX)
+
 -JMS endpoints
 
