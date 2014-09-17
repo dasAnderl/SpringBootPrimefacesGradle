@@ -17,6 +17,8 @@ to stop call gradle task bootStop (just intellijs stop button does not work and 
 Features so far
 ===============
 
+spring and java might be mixed (only one main/test src folder for both) -> enjoy groovy coding in src/main/java
+
 websecurity with spring
 
 example jsf/primefaces view on localhost:port/index.jsf
