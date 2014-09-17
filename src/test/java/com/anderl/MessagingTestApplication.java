@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableAutoConfiguration(exclude = {OptionalExtPropsConfig.class, ScheduleConfig.class, WebFilterConfig.class, WebJsfConfig.class, WebSecurityConfig.class})
-@ComponentScan({"com.anderl.config"})
-public class AmqpTestApplication {
+@ComponentScan({"com.anderl.config", "com.anderl.service"})
+public class MessagingTestApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AmqpTestApplication.class);
+        SpringApplication.run(MessagingTestApplication.class);
     }
 }
