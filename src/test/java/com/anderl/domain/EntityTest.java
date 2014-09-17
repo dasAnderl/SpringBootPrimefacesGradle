@@ -1,7 +1,7 @@
 package com.anderl.domain;
 
 import com.anderl.DomainTestApplication;
-import com.anderl.dao.TestEntityRepository;
+import com.anderl.dao.EntityRepository;
 import org.hibernate.Session;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -15,20 +15,23 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = DomainTestApplication.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EntityTest {
 
     @Autowired
-    TestEntityRepository testEntityRepository;
+    EntityRepository entityRepository;
     @Autowired
     EntityManager entityManager;
-    Entity entity = EntityProvider.getRandomEntity();
+    Entity entity = DomainProvider.getRandomEntity();
 
     @Before
     public void save() throws Exception {
-        testEntityRepository.save(entity);
+        entityRepository.save(entity);
         entityManager.unwrap(Session.class).flush();
         entityManager.unwrap(Session.class).evict(entity);
 
@@ -38,14 +41,22 @@ public class EntityTest {
     @Transactional
     public void load() {
 
-        Entity entity = testEntityRepository.findAll().iterator().next();
+        Entity entity = entityRepository.findAll().iterator().next();
 
-        for (NestedEntity nestedEntity : entity.getNestedEntitiesNoBatch()) {
-            System.out.println(nestedEntity.getNestedAge());
-        }
+        //check audting
+        assertThat(entity.getCreatedBy(), notNullValue());
+        assertThat(entity.getLastModifiedBy(), notNullValue());
+        assertThat(entity.getCreatedDate(), notNullValue());
+        assertThat(entity.getLastModifiedDate(), notNullValue());
 
-        for (NestedEntity nestedEntity : entity.getNestedEntitiesBatch10()) {
-            System.out.println(nestedEntity.getNestedAge());
-        }
+        //check fields
+        assertThat(entity.getName(), notNullValue());
+        assertThat(entity.getAge(), notNullValue());
+        assertThat(entity.getNestedEntitiesNoBatch(), iterableWithSize(greaterThan(0)));
+        assertThat(entity.getNestedEntitiesBatch10(), iterableWithSize(greaterThan(0)));
+        assertThat(entity.getNestedEntitiesNoBatch().get(0).getNestedName(), notNullValue());
+        assertThat(entity.getNestedEntitiesNoBatch().get(0).getNestedName(), notNullValue());
+        assertThat(entity.getNestedEntitiesBatch10().get(0).getNestedAge(), notNullValue());
+        assertThat(entity.getNestedEntitiesBatch10().get(0).getNestedAge(), notNullValue());
     }
 }

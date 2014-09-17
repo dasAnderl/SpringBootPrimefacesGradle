@@ -1,8 +1,8 @@
 package com.anderl.rest;
 
-import com.anderl.dao.TestEntityRepository;
+import com.anderl.dao.EntityRepository;
+import com.anderl.domain.DomainProvider;
 import com.anderl.domain.Entity;
-import com.anderl.domain.EntityProvider;
 import com.google.common.collect.Lists;
 import mockit.Expectations;
 import mockit.Injectable;
@@ -25,7 +25,7 @@ public class EntityRestEndpointTest {
     TestEntityRestEndpoint testEntityRestEndpoint;
 
     @Injectable
-    TestEntityRepository testEntityRepository;
+    EntityRepository entityRepository;
 
     private MockMvc mockMvc;
 
@@ -34,10 +34,10 @@ public class EntityRestEndpointTest {
         mockMvc = MockMvcBuilders.standaloneSetup(testEntityRestEndpoint).build();
 
         ArrayList<Entity> entities = Lists.newArrayList(
-                EntityProvider.getRandomEntity()
-                , EntityProvider.getRandomEntity());
+                DomainProvider.getRandomEntity()
+                , DomainProvider.getRandomEntity());
         new Expectations() {{
-            testEntityRepository.findAll();
+            entityRepository.findAll();
             result = entities;
         }};
 
@@ -55,10 +55,10 @@ public class EntityRestEndpointTest {
     @Test
     public void testGetByAgePath() throws Exception {
         mockMvc = MockMvcBuilders.standaloneSetup(testEntityRestEndpoint).build();
-        final Entity randomEntity = EntityProvider.getRandomEntity();
+        final Entity randomEntity = DomainProvider.getRandomEntity();
         int age = randomEntity.getAge();
         new Expectations() {{
-            testEntityRepository.findByAge(age);
+            entityRepository.findByAge(age);
             result = Lists.newArrayList(randomEntity);
         }};
 
@@ -74,10 +74,10 @@ public class EntityRestEndpointTest {
     @Test
     public void testAddTestEntity() throws Exception {
         mockMvc = MockMvcBuilders.standaloneSetup(testEntityRestEndpoint).build();
-        final Entity randomEntity = EntityProvider.getRandomEntity();
+        final Entity randomEntity = DomainProvider.getRandomEntity();
         long id = randomEntity.getId();
         new Expectations() {{
-            testEntityRepository.save((Entity) any);
+            entityRepository.save((Entity) any);
             result = randomEntity;
         }};
 

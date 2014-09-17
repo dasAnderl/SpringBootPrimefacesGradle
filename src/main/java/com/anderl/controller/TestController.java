@@ -1,8 +1,8 @@
 package com.anderl.controller;
 
-import com.anderl.dao.TestEntityRepository;
+import com.anderl.dao.EntityRepository;
+import com.anderl.domain.DomainProvider;
 import com.anderl.domain.Entity;
-import com.anderl.domain.EntityProvider;
 import com.anderl.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -20,7 +20,7 @@ import javax.faces.bean.ManagedBean;
 public class TestController {
 
     @Autowired
-    TestEntityRepository testEntityRepository;
+    EntityRepository entityRepository;
 
     @Autowired
     TestService testService;
@@ -29,8 +29,8 @@ public class TestController {
     public void saveTestEntity() {
 
         System.out.println("saving new entity");
-        Entity entity = EntityProvider.getRandomEntity();
-        testEntityRepository.save(entity);
+        Entity entity = DomainProvider.getRandomEntity();
+        entityRepository.save(entity);
     }
 
     public String getUserName() {

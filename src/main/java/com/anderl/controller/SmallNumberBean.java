@@ -16,7 +16,7 @@
  */
 package com.anderl.controller;
 
-import com.anderl.dao.TestEntityRepository;
+import com.anderl.dao.EntityRepository;
 import com.anderl.domain.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -34,7 +34,7 @@ import javax.validation.constraints.Min;
 public class SmallNumberBean {
 
     @Autowired
-    TestEntityRepository testEntityDao;
+    EntityRepository testEntityDao;
 
 	@Max(10)
 	@Min(50)

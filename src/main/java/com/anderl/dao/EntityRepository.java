@@ -10,7 +10,7 @@ import java.util.List;
  * Created by dasanderl on 07.09.14.
  */
 @ManagedBean//only for autocompletion in xhtml. annotation not working
-public interface TestEntityRepository extends CrudRepository<Entity, Long> {
+public interface EntityRepository extends CrudRepository<Entity, Long> {
 
     List<Entity> findByName(String name);
 

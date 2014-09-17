@@ -3,7 +3,7 @@ package com.anderl.domain
 /**
  * Created by dasanderl on 14.09.14.
  */
-class EntityProvider {
+class DomainProvider {
 
     static Entity getRandomEntity() {
 
@@ -30,7 +30,9 @@ class EntityProvider {
                                 nestedAge: new Random().nextInt(100),
                         )
                 ]);
-//        entity.nestedEntitiesBatch10.each() {nested -> nested.entityBatch10 = entity }
-//        entity.nestedEntitiesNoBatch.each() {nested -> nested.entityNoBatch = entity }
+    }
+
+    static User getRandomUser() {
+        return new User(name: "userName" + +new Random().nextInt(100))
     }
 }

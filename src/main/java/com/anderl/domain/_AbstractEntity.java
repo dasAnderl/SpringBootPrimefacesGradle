@@ -1,9 +1,8 @@
 package com.anderl.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
  * Created by dasanderl on 07.09.14.
@@ -15,11 +14,23 @@ public abstract class _AbstractEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Version
+    @NotNull
+    private Date lastModifiedDate;
+
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 }

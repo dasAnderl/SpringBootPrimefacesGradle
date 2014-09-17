@@ -2,7 +2,7 @@ package com.anderl.amqp;
 
 import com.anderl.MessagingTestApplication;
 import com.anderl.config._Profiles;
-import com.anderl.domain.EntityProvider;
+import com.anderl.domain.DomainProvider;
 import com.anderl.service.MessagingService;
 import mockit.Mocked;
 import mockit.Tested;
@@ -45,7 +45,7 @@ public class MessagingTest {
     @Test
     public void test() throws Exception {
         System.out.println("Sending message...");
-        rabbitTemplate.convertAndSend(queueName, EntityProvider.getRandomEntity());
+        rabbitTemplate.convertAndSend(queueName, DomainProvider.getRandomEntity());
 
         Thread.sleep(500);
 

@@ -13,7 +13,7 @@ import java.util.List;
  * Created by dasanderl on 07.09.14.
  */
 @javax.persistence.Entity
-public class Entity extends _AbstractEntity {
+public class Entity extends _AuditableEntity {
 
     private String name;
     private int age;
@@ -73,4 +73,6 @@ public class Entity extends _AbstractEntity {
                 ", nestedEntitiesNoBatch=" + nestedEntitiesNoBatch +
                 '}';
     }
+
+
 }
