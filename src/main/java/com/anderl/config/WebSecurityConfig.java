@@ -53,13 +53,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected static class AuthenticationConfiguration extends
             GlobalAuthenticationConfigurerAdapter {
 
+        @Value("${user.default}")
+        protected String userDefault;
+
+        @Value("${user.default.pw}")
+        private String userDefaultPw;
+
+        @Value("${user.admin}")
+        private String userAdmin;
+
+        @Value("${user.admin.pw}")
+        private String userAdminPw;
+
         @Override
         public void init(AuthenticationManagerBuilder auth) throws Exception {
             auth
                     .inMemoryAuthentication()
-                    .withUser("user").password("password").roles("USER")
+                    .withUser(userDefault).password(userDefaultPw).roles("USER")
                     .and()
-                    .withUser("admin").password("admin").roles("ADMIN");
+                    .withUser(userAdmin).password(userAdminPw).roles("ADMIN");
         }
 
     }
