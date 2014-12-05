@@ -37,14 +37,15 @@ repositories {
 }
 
 def versionSpring = "4.1.0.RELEASE"
+def versionSpringboot = "1.1.9.RELEASE"
 
 dependencies {
-    compile "org.springframework.boot:spring-boot-starter-data-jpa",
-            "org.springframework.boot:spring-boot-starter-actuator",
-            "org.springframework.boot:spring-boot-starter-jetty",
-            "org.springframework.boot:spring-boot-starter-security",
-            "org.springframework.boot:spring-boot-starter-logging",
-            "org.springframework.boot:spring-boot-starter-amqp",
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:$versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-actuator:$versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-jetty:$versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-security:$versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-logging:$versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-amqp:$versionSpringboot",
             "org.springframework:spring-web:$versionSpring",
             "org.springframework:spring-webmvc:$versionSpring",
             "org.springframework.data:spring-data-jpa:1.7.0.RELEASE",
