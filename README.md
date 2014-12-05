@@ -25,6 +25,8 @@ example jsf/primefaces view on localhost:port/index.jsf
 
 jpa/hibernate on a h2 db (open session in entitymanager pattern used)
 
+entity auditing
+
 h2console is enabled (localhost:port/h2console)
 
 example rest endpoints (spring driven, localhost:port/rest/...)
