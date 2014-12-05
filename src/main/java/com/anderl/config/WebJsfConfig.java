@@ -8,17 +8,19 @@ import org.springframework.boot.context.embedded.ServletListenerRegistrationBean
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.faces.webapp.FacesServlet;
+import javax.servlet.ServletContext;
 import java.util.Map;
 
 /**
  * Created by dasanderl on 12.09.14.
  */
 @Configuration
-public class WebJsfConfig {
+public class WebJsfConfig implements ServletContextAware {
 
     @Bean
     public static CustomScopeConfigurer getViewScopeConfigurer() {
@@ -48,12 +50,6 @@ public class WebJsfConfig {
     }
 
     @Bean
-    public ServletListenerRegistrationBean<ConfigureListener> jsfConfigureListener() {
-        return new ServletListenerRegistrationBean<>(
-                configureListener());
-    }
-
-    @Bean
     public ConfigureListener configureListener() {
         return new ConfigureListener();
     }
@@ -64,5 +60,16 @@ public class WebJsfConfig {
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".jsf");
         return resolver;
+    }
+
+    @Bean
+    public ServletListenerRegistrationBean<ConfigureListener> jsfConfigureListener() {
+        return new ServletListenerRegistrationBean<>(
+                new ConfigureListener());
+    }
+
+    @Override
+    public void setServletContext(ServletContext servletContext) {
+        servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
     }
 }
