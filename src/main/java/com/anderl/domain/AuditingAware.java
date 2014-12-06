@@ -25,10 +25,11 @@ public class AuditingAware implements AuditorAware<User> {
 
     @Override
     public User getCurrentAuditor() {
-        //TODO fix me with proper logic in prod
-        log.warn("here we dynamically create a user for audting. Fix in prod");
+
         SecurityContext securityContext = SecurityContextHolder.getContext();
         if (securityContext.getAuthentication() == null) {
+            //TODO fix me with proper logic in prod
+            log.warn("here we dynamically create a user for audting. Fix in prod");
             User randomUser = DomainProvider.getRandomUser();
             userRepository.save(randomUser);
             return randomUser;

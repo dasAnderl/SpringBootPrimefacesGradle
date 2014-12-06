@@ -11,6 +11,7 @@ apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'maven'
 apply plugin: 'spring-boot'
+apply plugin: 'war'
 
 sourceCompatibility = 1.8
 version = '1.0-SNAPSHOT'
