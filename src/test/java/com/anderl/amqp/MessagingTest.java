@@ -2,15 +2,15 @@ package com.anderl.amqp;
 
 import com.anderl.MessagingTestApplication;
 import com.anderl.config._Profiles;
+import com.anderl.domain.DomainProvider;
 import com.anderl.service.MessagingService;
 import mockit.Mocked;
-import mockit.Tested;
+import mockit.Verifications;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -30,8 +30,6 @@ public class MessagingTest {
 
     @Autowired
     RabbitTemplate rabbitTemplate;
-    @Tested
-    MessageListenerAdapter messageListenerAdapter;
     @Mocked
     MessagingService messagingService;
     @Value("${amqp.queue.name}")
@@ -40,7 +38,9 @@ public class MessagingTest {
     private String topicName;
 
     /**
+     *
      * To run this test rabbitMqServer must be started
+     * and messaging profile must be active
      *
      * start: rabbitmq-server -detached
      * stop: rabbitmqctl stop
@@ -48,13 +48,13 @@ public class MessagingTest {
     @Test
     public void test() throws Exception {
         System.out.println("Sending message...");
-//        rabbitTemplate.convertAndSend(queueName, DomainProvider.getRandomEntity());
-//
-//        Thread.sleep(500);
-//
-//        new Verifications() {{
-//            messagingService.receiveMessage(any);
-//            times = 1;
-//        }};
+        rabbitTemplate.convertAndSend(queueName, DomainProvider.getRandomEntity());
+
+        Thread.sleep(500);
+
+        new Verifications() {{
+            messagingService.receiveMessage(any);
+            times = 1;
+        }};
     }
 }

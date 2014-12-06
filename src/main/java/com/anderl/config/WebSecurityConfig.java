@@ -65,13 +65,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         @Value("${user.admin.pw}")
         private String userAdminPw;
 
+        @Value("${role.admin}")
+        private String roleAdmin;
+
+        @Value("${role.user}")
+        private String roleUser;
+
         @Override
         public void init(AuthenticationManagerBuilder auth) throws Exception {
             auth
                     .inMemoryAuthentication()
-                    .withUser(userDefault).password(userDefaultPw).roles("USER")
+                    .withUser(userDefault).password(userDefaultPw).roles(roleUser)
                     .and()
-                    .withUser(userAdmin).password(userAdminPw).roles("ADMIN");
+                    .withUser(userAdmin).password(userAdminPw).roles(roleAdmin);
         }
 
     }
