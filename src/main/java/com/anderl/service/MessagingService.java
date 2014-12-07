@@ -12,6 +12,6 @@ import org.springframework.stereotype.Service;
 public class MessagingService {
 
     public void receiveMessage(Object message) {
-        System.out.println("Amqp msg received <" + message + ">");
+        System.out.printf("Amqp msg received < %s >", message);
     }
 }

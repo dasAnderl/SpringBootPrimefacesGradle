@@ -13,5 +13,7 @@ public class ScheduleConfig {
 
     @Scheduled(fixedDelay = 10000)
     public void testScheduleTask() {
+
+        System.out.printf("executing scheduled task %s", "some param");
     }
 }

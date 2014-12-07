@@ -7,7 +7,7 @@ class DomainProvider {
 
     static Entity getRandomEntity() {
 
-        Entity entity = new Entity(
+        new Entity(
                 name: "name_" + new Random().nextInt(12),
                 age: new Random().nextInt(100),
                 nestedEntitiesBatch10: [
@@ -33,6 +33,6 @@ class DomainProvider {
     }
 
     static User getRandomUser() {
-        return new User(name: "userName" + +new Random().nextInt(100))
+        return new User(name: "userName" + new Random().nextInt(100))
     }
 }

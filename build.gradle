@@ -22,10 +22,14 @@ new File("$projectDir/src/main/resources/application.properties").withInputStrea
     stream -> applicationProperties.load(stream)
 }
 
-//refersh changing deps always
+def versionSpring = "4.1.2.RELEASE"
+def versionSpringboot = "1.1.9.RELEASE"
+
+//refresh changing deps always
 configurations.all {
     resolutionStrategy {
         cacheChangingModulesFor 0, "seconds"
+        force "org.springframework:spring-test:$versionSpring"
     }
     exclude group: 'org.mockito'
 }
@@ -36,9 +40,6 @@ repositories {
     maven { url "https://github.com/dasAnderl/maven-repo/raw/master/snapshots" }
     maven { url "https://github.com/dasAnderl/maven-repo/raw/master/releases" }
 }
-
-def versionSpring = "4.1.0.RELEASE"
-def versionSpringboot = "1.1.9.RELEASE"
 
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-data-jpa:$versionSpringboot",

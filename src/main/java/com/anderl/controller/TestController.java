@@ -3,7 +3,7 @@ package com.anderl.controller;
 import com.anderl.dao.EntityRepository;
 import com.anderl.domain.DomainProvider;
 import com.anderl.domain.Entity;
-import com.anderl.service.TestService;
+import com.anderl.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -23,7 +23,7 @@ public class TestController {
     EntityRepository entityRepository;
 
     @Autowired
-    TestService testService;
+    UserService userService;
 
     @Transactional
     public void saveTestEntity() {
@@ -34,7 +34,7 @@ public class TestController {
     }
 
     public String getUserName() {
-        return testService.getUserNameFromService();
+        return userService.getUserNameFromService();
 
     }
 }
