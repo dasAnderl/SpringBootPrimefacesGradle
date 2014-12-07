@@ -1,18 +1,22 @@
 package com.anderl.base;
 
 import com.anderl.ExternalPropsConfigApplication;
-import com.anderl.SpringTest;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.core.env.Environment;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Created by dasanderl on 17.09.14.
  */
-@SpringTest
+@RunWith(SpringJUnit4ClassRunner.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @SpringApplicationConfiguration(classes = ExternalPropsConfigApplication.class)
 public class ExternalPropsTest {
 

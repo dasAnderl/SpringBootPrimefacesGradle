@@ -1,14 +1,17 @@
 package com.anderl.domain;
 
 import com.anderl.DomainTestApplication;
-import com.anderl.SpringTest;
 import com.anderl.dao.EntityRepository;
 import org.hibernate.Session;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TestTransaction;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +20,8 @@ import javax.persistence.EntityManager;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
-@SpringTest
+@RunWith(SpringJUnit4ClassRunner.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @SpringApplicationConfiguration(classes = DomainTestApplication.class)
 @Transactional
 public class EntityTest {
