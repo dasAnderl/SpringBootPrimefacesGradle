@@ -72,13 +72,13 @@ public class EntityTest {
         entityRepository.save(DomainProvider.getRandomEntity());
 
         //then
-        Assert.assertThat("number is not same", nrOfEntities, is(entityRepository.count()));
+        Assert.assertThat("number is not same", nrOfEntities + 1, is(entityRepository.count()));
 
         //when
         TestTransaction.flagForCommit();
         TestTransaction.end();
 
         //then
-        Assert.assertThat("wrong entity count(should be one more)", nrOfEntities, is(entityRepository.count()));
+        Assert.assertThat("wrong entity count(should be one more)", nrOfEntities + 1, is(entityRepository.count()));
     }
 }
