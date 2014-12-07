@@ -48,6 +48,7 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-security:$versionSpringboot",
             "org.springframework.boot:spring-boot-starter-logging:$versionSpringboot",
             "org.springframework.boot:spring-boot-starter-amqp:$versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-thymeleaf:$versionSpringboot",
             "org.springframework:spring-web:$versionSpring",
             "org.springframework:spring-webmvc:$versionSpring",
             "org.springframework.data:spring-data-jpa:1.7.0.RELEASE",
