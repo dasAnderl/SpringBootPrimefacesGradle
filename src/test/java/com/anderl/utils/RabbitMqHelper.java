@@ -9,11 +9,10 @@ import java.io.InputStreamReader;
  */
 public class RabbitMqHelper {
 
-
     private RabbitMqHelper() {
     }
 
-    public static boolean startRabbitMqIfNoRrunning() throws Exception {
+    public static boolean startRabbitMqIfNotRrunning() throws Exception {
 
         if (!isRabbitMqRunning()) {
             System.out.println("starting rabbit mq");

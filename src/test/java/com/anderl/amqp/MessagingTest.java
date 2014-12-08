@@ -49,7 +49,7 @@ public class MessagingTest {
     @BeforeClass
     public static void ensureRabbitMqRunning() throws Exception {
 
-        startedRabbitMq = RabbitMqHelper.startRabbitMqIfNoRrunning();
+        startedRabbitMq = RabbitMqHelper.startRabbitMqIfNotRrunning();
     }
 
     @AfterClass
