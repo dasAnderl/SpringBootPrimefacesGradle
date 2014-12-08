@@ -1,5 +1,7 @@
 package com.anderl.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -11,9 +13,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableScheduling
 public class ScheduleConfig {
 
+    private final Logger logger = LoggerFactory.getLogger(ScheduleConfig.class);
+
     @Scheduled(fixedDelay = 10000)
     public void testScheduleTask() {
-
-        System.out.printf("executing scheduled task %s", "some param");
+        logger.warn("first scheduled task");
     }
 }
