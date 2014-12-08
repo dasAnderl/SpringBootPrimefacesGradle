@@ -4,6 +4,7 @@ import com.anderl.MessagingTestApplication;
 import com.anderl.config._Profiles;
 import com.anderl.domain.DomainProvider;
 import com.anderl.service.MessagingService;
+import com.anderl.utils.RabbitMqHelper;
 import mockit.Mocked;
 import mockit.Verifications;
 import org.junit.AfterClass;
@@ -19,10 +20,6 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * Created by dasanderl on 17.09.14.
@@ -47,49 +44,19 @@ public class MessagingTest {
     /**
      * To run this tests rabbitMqServer must be started
      * and messaging profile must be active
-     * <p>
-     * start: rabbitmq-server -detached
-     * stop: rabbitmqctl stop
      */
 
     @BeforeClass
     public static void ensureRabbitMqRunning() throws Exception {
 
-        if (!isRabbitMqRunning()) {
-            System.out.println("starting rabbit mq");
-            Process p = Runtime.getRuntime().exec("rabbitmq-server -detached");
-            p.waitFor();
-            if (!isRabbitMqRunning()) {
-                throw new AssertionError("Could not start rabbit mq");
-            }
-            startedRabbitMq = true;
-            return;
-        }
+        startedRabbitMq = RabbitMqHelper.startRabbitMqIfNoRrunning();
     }
 
     @AfterClass
     public static void stopRabbitMqg() throws Exception {
         if (startedRabbitMq) {
-            System.out.println("stopping rabbit mq");
-            Process p = Runtime.getRuntime().exec("rabbitmqctl stop");
-            p.waitFor();
+            RabbitMqHelper.stopRabbitMg();
         }
-    }
-
-    private static boolean isRabbitMqRunning() throws IOException, InterruptedException {
-        Process p = Runtime.getRuntime().exec("rabbitmqctl status");
-        p.waitFor();
-
-        BufferedReader reader =
-                new BufferedReader(new InputStreamReader(p.getErrorStream()));
-
-        String line;
-        while ((line = reader.readLine()) != null) {
-            if (line.contains("Error: unable to connect to node")) {
-                return false;
-            }
-        }
-        return true;
     }
 
     @Test
@@ -104,6 +71,4 @@ public class MessagingTest {
             times = 1;
         }};
     }
-
-
 }
