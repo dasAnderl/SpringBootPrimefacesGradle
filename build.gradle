@@ -62,8 +62,8 @@ dependencies {
             'com.google.guava:guava:18.0',
             'com.google.guava:guava-collections:r03',
             "javax.validation:validation-api",
-            "org.codehaus.groovy:groovy-all"
-//    compile("com.anderl:hibernate-ext-java8:1.0-SNAPSHOT") { changing = true }
+            "org.codehaus.groovy:groovy-all",
+            compile("com.anderl:hibernate-ext-java8:1.0-SNAPSHOT") { changing = true }
 
     testCompile "org.springframework.boot:spring-boot-starter-test",
             'com.googlecode.jmockit:jmockit:1.7',
