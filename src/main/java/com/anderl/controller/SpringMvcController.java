@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SpringMvcController {
 
     /**
-     * This will redirect to thymeleaf template /src/main/resources/templates/index.html
+     * This will redirect to thymeleaf template /src/main/resources/templates/thymeleaf.html
      *
      * @return
      */
     @RequestMapping("/thymeleaf")
     String index() {
-        return "index";
+        return "thymeleaf";
     }
 }
 

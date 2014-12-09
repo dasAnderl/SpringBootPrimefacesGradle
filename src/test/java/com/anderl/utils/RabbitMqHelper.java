@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 /**
  * Created by dasanderl on 08.12.14.
  */
-public class RabbitMqHelper {
+public final class RabbitMqHelper {
 
     private RabbitMqHelper() {
     }
