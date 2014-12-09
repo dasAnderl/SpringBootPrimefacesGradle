@@ -1,0 +1,69 @@
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3c.org/1999/xhtml"
+        >
+
+    <h:head/>
+    <h:body>
+        <h:form prependId="false">
+            <p:commandButton value="save new TestEntity" actionListener="#{entityController.saveTestEntity()}"
+                             process="@this"/>
+
+            <br/>
+
+            <f:
+            <br/>
+
+            <p:commandButton value="Search" actionListener="#{entityController.page()}"
+                             process="@this"
+                             update="@parent"/>
+            <br/>
+
+            <p:dataTable var="entity" value="#{entityController.entities}">
+                <f:facet name="header">
+                    Entities and nested entities
+                </f:facet>
+
+                <p:columnGroup type="header">
+                    <p:row>
+                        <p:column/>
+                        <p:column headerText="Id"/>
+                        <p:column headerText="Name"/>
+                        <p:column headerText="Age"/>
+
+                    </p:row>
+                </p:columnGroup>
+
+                <p:subTable var="nested" value="#{entity.nestedEntitiesBatch10}">
+                    <p:columnGroup type="header">
+                        <p:row>
+                            <p:column headerText="Entity"/>
+                            <p:column headerText="#{entity.id}"/>
+                            <p:column headerText="#{entity.name}"/>
+                            <p:column headerText="#{entity.age}"/>
+                        </p:row>
+                        <p:row>
+                            <p:column colspan="4" headerText="NestedEntities"/>
+                        </p:row>
+                    </p:columnGroup>
+                    <p:column/>
+                    <p:column>
+                        <h:outputText value="#{nested.id}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{nested.nestedName}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{nested.nestedAge}"/>
+                    </p:column>
+                </p:subTable>
+            </p:dataTable>
+
+            <br/>
+
+            <a href="/thymeleaf">got to thymeleaf view</a>
+            <br/>
+            <a href="/index.xhtml">got to index.xhtml</a>
+
+        </h:form>
+    </h:body>
+</f:view>

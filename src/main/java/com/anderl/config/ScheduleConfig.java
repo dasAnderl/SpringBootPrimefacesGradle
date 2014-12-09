@@ -17,6 +17,6 @@ public class ScheduleConfig {
 
     @Scheduled(fixedDelay = 10000)
     public void testScheduleTask() {
-        logger.warn("first scheduled task");
+        //put some logic here
     }
 }

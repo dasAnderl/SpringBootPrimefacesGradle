@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @Configuration
 @EnableAutoConfiguration
 @EnableJpaAuditing(auditorAwareRef = "auditingAware")
-@ComponentScan({"com.anderl.domain", "com.anderl.dao"})
+@ComponentScan({"com.anderl.domain", "com.anderl.dao", "com.anderl.search"})
 public class DomainTestApplication {
 
     public static void main(String[] args) {

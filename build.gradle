@@ -32,6 +32,7 @@ configurations.all {
         force "org.springframework:spring-test:$versionSpring"
     }
     exclude group: 'org.mockito'
+    exclude group: 'org.hibernate.javax.persistence', module: 'hibernate-jpa-2.0-api'
 }
 
 repositories {
@@ -53,14 +54,14 @@ dependencies {
             "org.springframework:spring-webmvc:$versionSpring",
             "org.springframework.data:spring-data-jpa:1.7.0.RELEASE",
             "com.h2database:h2",
-            'org.hibernate:hibernate-core',
-            'org.hibernate.javax.persistence:hibernate-jpa-2.1-api',
+            "org.hibernate:hibernate-core",
+            "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final",
             "org.primefaces:primefaces:5.0",
             "com.sun.faces:jsf-api:2.+",
             "com.sun.faces:jsf-impl:2.+",
             "org.hibernate:hibernate-validator",
-            'com.google.guava:guava:18.0',
-            'com.google.guava:guava-collections:r03',
+            "com.google.guava:guava:18.0",
+            "com.google.guava:guava-collections:r03",
             "javax.validation:validation-api",
             "org.codehaus.groovy:groovy-all",
             compile("com.anderl:hibernate-ext-java8:1.0-SNAPSHOT") { changing = true }
