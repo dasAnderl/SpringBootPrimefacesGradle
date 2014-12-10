@@ -35,6 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/public/**").permitAll()
+                // we basically disable security for local development
+                .antMatchers("/**").permitAll()
                 .anyRequest().hasRole("USER")
                 .and()
                 .formLogin() // enable form based log in
