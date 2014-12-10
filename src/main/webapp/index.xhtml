@@ -26,7 +26,7 @@
                                  update="@parent:@parent"/>
                 <br/>
             </h:panelGrid>
-            <p:commandButton value="save new TestEntity" actionListener="#{testController.saveTestEntity()}"
+            <p:commandButton value="save new TestEntity" actionListener="#{entityController.saveTestEntity()}"
                              process="@this"
                              update="@parent"/>
 
@@ -77,6 +77,8 @@
             <br/>
 
             <a href="/thymeleaf">got to thymeleaf view</a>
+            <br/>
+            <a href="/search.xhtml">got to search page</a>
 
         </h:form>
     </h:body>

@@ -1,26 +1,155 @@
-<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-        xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3c.org/1999/xhtml"
-        >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
-    <h:head/>
-    <h:body>
-        <h:form prependId="false">
-            <p:commandButton value="save new TestEntity" actionListener="#{entityController.saveTestEntity()}"
-                             process="@this"/>
+<h:head>
+    <link rel="stylesheet" href="/resources/css/styles.css"/>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"/>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"/>
+</h:head>
+<h:body>
+    <h:form prependId="false">
+        <div>
+            <div class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/index.xhtml">Go to index jsf view</a>
+                    </div>
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/thymeleaf">Go to thymeleaf view</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="container">
 
-            <br/>
+            <!--<p:messages/>-->
 
-            <f:
-            <br/>
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-condensed" width="200px">
+                        <thead>
+                        <tr>
+                            <td>Filters</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>Enabled</td>
+                            <td>Value</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                Name Filter
+                            </td>
+                            <td>
+                                <p:selectBooleanCheckbox id="nameEnabled"
+                                                         value="#{entityController.entityFilter.nameFilter.enabled}">
+                                    <p:ajax event="change" process="@this" update="@none"/>
+                                </p:selectBooleanCheckbox>
+                            </td>
+                            <td>
+                                <p:inputText id="nameValue" value="#{entityController.entityFilter.nameFilter.value}">
+                                    <p:ajax event="blur" process="@this" update="@none"/>
+                                </p:inputText>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Age Filter
+                            </td>
+                            <td>
+                                <p:selectBooleanCheckbox id="ageEnabled"
+                                                         value="#{entityController.entityFilter.ageFilter.enabled}">
+                                    <p:ajax event="change" process="@this" update="@none"/>
+                                </p:selectBooleanCheckbox>
+                            </td>
+                            <td>
+                                <p:inputText id="ageValue" value="#{entityController.entityFilter.ageFilter.value}"
+                                             converter="integerConverter" converterMessage="Please enter a number">
+                                    <p:ajax event="blur" process="@this" update="@parent"/>
+                                </p:inputText>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Sub name Filter
+                            </td>
+                            <td>
+                                <p:selectBooleanCheckbox id="subNameEnabled"
+                                                         value="#{entityController.entityFilter.nameSubFilter.enabled}">
+                                    <p:ajax event="change" process="@this" update="@none"/>
+                                </p:selectBooleanCheckbox>
+                            </td>
+                            <td>
+                                <p:inputText id="subNameValue"
+                                             value="#{entityController.entityFilter.nameSubFilter.value}">
+                                    <p:ajax event="blur" process="@this" update="@none"/>
+                                </p:inputText>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Sun Age Filter
+                            </td>
+                            <td>
+                                <p:selectBooleanCheckbox id="subAgeEnabled"
+                                                         value="#{entityController.entityFilter.ageSubFilter.enabled}">
+                                    <p:ajax event="change" process="@this" update="@none"/>
+                                </p:selectBooleanCheckbox>
+                            </td>
+                            <td>
+                                <p:inputText id="subAgeValue"
+                                             value="#{entityController.entityFilter.ageSubFilter.value}"
+                                             converter="integerConverter" converterMessage="Please enter a number">
+                                    <p:ajax event="blur" process="@this" update="@parent"/>
+                                </p:inputText>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tr>
 
-            <p:commandButton value="Search" actionListener="#{entityController.page()}"
-                             process="@this"
-                             update="@parent"/>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <p:dataList value="#{entityRepository.findAll()}" var="entity">
+                        <f:facet name="header">
+                            All entities
+                        </f:facet>
+                        #{entity.id}, #{entity.name}, #{entity.age}, #{entity.createdBy.name}, #{entity.lastModifiedDate}
+                    </p:dataList>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <p:commandButton value="create and save new Random Entity"
+                                     actionListener="#{entityController.saveTestEntity()}"
+                                     process="@this" update="@parent"/>
+
+                </div>
+                <div class="col-md-2">
+                    <p:commandButton value="Apply filters" actionListener="#{entityController.page()}"
+                                     process="@this"
+                                     update="@parent"/>
+                </div>
+                <div class="col-md-8"/>
+            </div>
+
             <br/>
 
             <p:dataTable var="entity" value="#{entityController.entities}">
                 <f:facet name="header">
-                    Entities and nested entities
+                    Filtered Entites
                 </f:facet>
 
                 <p:columnGroup type="header">
@@ -58,12 +187,8 @@
                 </p:subTable>
             </p:dataTable>
 
-            <br/>
+        </div>
 
-            <a href="/thymeleaf">got to thymeleaf view</a>
-            <br/>
-            <a href="/index.xhtml">got to index.xhtml</a>
-
-        </h:form>
-    </h:body>
-</f:view>
+    </h:form>
+</h:body>
+</html>

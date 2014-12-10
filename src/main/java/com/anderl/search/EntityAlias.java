@@ -8,7 +8,7 @@ import org.hibernate.sql.JoinType;
  */
 public enum EntityAlias implements AliasUtils.Alias {
 
-    SUBENTITIES("subEntities", JoinType.LEFT_OUTER_JOIN);
+    SUBENTITIES("nestedEntitiesBatch10", JoinType.LEFT_OUTER_JOIN);
 
     private final String fieldPath;
     private final JoinType joinType;

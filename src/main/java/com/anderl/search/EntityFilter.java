@@ -13,16 +13,32 @@ import static com.anderl.hibernate.ext.AliasUtils.Criterion;
  * Created by dasanderl on 09.12.14.
  */
 public class EntityFilter implements SearchFilter<Entity> {
-    Filter<String> nameFilter = new Filter<>(Criterion.get("name"), RestrictionsExt.like, "name");
+
+    private Order order = Order.asc(Criterion.get("name"));
+    private PagingHelper pagingHelper = new PagingHelper();
+
+    private Filter<String> nameFilter = Filter.get(Criterion.get("name"), RestrictionsExt.like, String.class, "name");
+    private Filter<Integer> ageFilter = Filter.get(Criterion.get("age"), RestrictionsExt.equal, Integer.class, 1);
+
+    private Filter<String> nameSubFilter = Filter.get(Criterion.get("nestedName", EntityAlias.SUBENTITIES), RestrictionsExt.like, String.class, "name");
+    private Filter<Integer> ageSubFilter = Filter.get(Criterion.get("nestedAge", EntityAlias.SUBENTITIES), RestrictionsExt.equal, Integer.class, 1);
 
     @Override
     public Order getOrder() {
-        return Order.asc(Criterion.get("name"));
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     @Override
     public PagingHelper getPagingHelper() {
-        return new PagingHelper();
+        return pagingHelper;
+    }
+
+    public void setPagingHelper(PagingHelper pagingHelper) {
+        this.pagingHelper = pagingHelper;
     }
 
     public Filter<String> getNameFilter() {
@@ -31,5 +47,29 @@ public class EntityFilter implements SearchFilter<Entity> {
 
     public void setNameFilter(Filter<String> nameFilter) {
         this.nameFilter = nameFilter;
+    }
+
+    public Filter<Integer> getAgeFilter() {
+        return ageFilter;
+    }
+
+    public void setAgeFilter(Filter<Integer> ageFilter) {
+        this.ageFilter = ageFilter;
+    }
+
+    public Filter<String> getNameSubFilter() {
+        return nameSubFilter;
+    }
+
+    public void setNameSubFilter(Filter<String> nameSubFilter) {
+        this.nameSubFilter = nameSubFilter;
+    }
+
+    public Filter<Integer> getAgeSubFilter() {
+        return ageSubFilter;
+    }
+
+    public void setAgeSubFilter(Filter<Integer> ageSubFilter) {
+        this.ageSubFilter = ageSubFilter;
     }
 }

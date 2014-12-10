@@ -23,14 +23,12 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 @Component
 @Scope("view")
-@ManagedBean//only for autocompletion in xhtml. annotation not working
 public class SmallNumberBean {
 
     @Autowired

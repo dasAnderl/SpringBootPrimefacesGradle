@@ -16,6 +16,11 @@ apply plugin: 'war'
 sourceCompatibility = 1.8
 version = '1.0-SNAPSHOT'
 
+sourceSets.main.java.srcDirs = []
+sourceSets.test.java.srcDirs = []
+sourceSets.main.groovy.srcDirs = ["src/main/java"]
+sourceSets.test.groovy.srcDirs = ["src/test/java"]
+
 //read springboot properties access prop: applicationProperties['my.prop']
 def applicationProperties = new Properties()
 new File("$projectDir/src/main/resources/application.properties").withInputStream {
@@ -28,7 +33,7 @@ def versionSpringboot = "1.1.9.RELEASE"
 //refresh changing deps always
 configurations.all {
     resolutionStrategy {
-        cacheChangingModulesFor 0, "seconds"
+        cacheChangingModulesFor 5, "seconds"
         force "org.springframework:spring-test:$versionSpring"
     }
     exclude group: 'org.mockito'
@@ -94,20 +99,3 @@ task bootStop() {
     def proc = command.execute()
     proc.waitFor()
 }
-
-//task rabbitMqStart() {
-//    def command2 = "rabbitmq-server -detached"
-//    def proc2 = command2.execute()
-//    proc2.waitFor()
-//}
-//
-//task rabbitMqStop() {
-//    def command = "rabbitmqctl stop"
-//    def proc = command.execute()
-//    proc.waitFor()
-//}
-
-sourceSets.main.java.srcDirs = []
-sourceSets.test.java.srcDirs = []
-sourceSets.main.groovy.srcDirs = ["src/main/java"]
-sourceSets.test.groovy.srcDirs = ["src/test/java"]
