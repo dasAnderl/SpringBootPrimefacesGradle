@@ -17,6 +17,7 @@ public class EntityFilter implements SearchFilter<Entity> {
     private Order order = Order.asc(Criterion.get("name"));
     private PagingHelper pagingHelper = new PagingHelper();
 
+    private Filter<Long> idFilter = Filter.get(Criterion.get("id"), RestrictionsExt.equal, Long.class, new Long(4));
     private Filter<String> nameFilter = Filter.get(Criterion.get("name"), RestrictionsExt.like, String.class, "name");
     private Filter<Integer> ageFilter = Filter.get(Criterion.get("age"), RestrictionsExt.equal, Integer.class, 1);
 
@@ -71,5 +72,13 @@ public class EntityFilter implements SearchFilter<Entity> {
 
     public void setAgeSubFilter(Filter<Integer> ageSubFilter) {
         this.ageSubFilter = ageSubFilter;
+    }
+
+    public Filter<Long> getIdFilter() {
+        return idFilter;
+    }
+
+    public void setIdFilter(Filter<Long> idFilter) {
+        this.idFilter = idFilter;
     }
 }

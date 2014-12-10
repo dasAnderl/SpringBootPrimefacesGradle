@@ -39,7 +39,7 @@ class SearchTest {
 
     @Test
     def void testEntityFilter1() {
-        Assert.assertThat("must be 3", pagingService.count(entityFilter), Matchers.is(0));
+        Assert.assertThat("must be 0, default entityfilter does not match anything", pagingService.count(entityFilter), Matchers.is(0));
     }
 
     @Test

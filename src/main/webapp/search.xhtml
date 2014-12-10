@@ -30,10 +30,9 @@
         <div class="clearfix"></div>
         <div class="container">
 
-            <!--<p:messages/>-->
-
             <div class="row">
                 <div class="col-md-6">
+                    <p:messages id="msgs"/>
                     <table class="table table-condensed" width="200px">
                         <thead>
                         <tr>
@@ -46,6 +45,23 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <tr>
+                            <td>
+                                Id Filter
+                            </td>
+                            <td>
+                                <p:selectBooleanCheckbox
+                                        value="#{entityController.entityFilter.idFilter.enabled}">
+                                    <p:ajax event="change" process="@this" update="@none"/>
+                                </p:selectBooleanCheckbox>
+                            </td>
+                            <td>
+                                <p:inputText id="idValue" value="#{entityController.entityFilter.idFilter.value}"
+                                             converter="longConverter" converterMessage="Please enter a number">
+                                    <p:ajax event="blur" process="@this" update="@parent msgs"/>
+                                </p:inputText>
+                            </td>
+                        </tr>
                         <tr>
                             <td>
                                 Name Filter
