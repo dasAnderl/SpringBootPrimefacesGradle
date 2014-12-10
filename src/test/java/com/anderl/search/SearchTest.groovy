@@ -5,6 +5,7 @@ import com.anderl.dao.EntityRepository
 import com.anderl.domain.DomainProvider
 import com.anderl.domain.Entity
 import org.hamcrest.Matchers
+import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -26,6 +27,8 @@ class SearchTest {
     @Autowired
     private PagingService<Entity> pagingService
 
+    private EntityFilter entityFilter = new EntityFilter()
+
     @Before
     def void createEntities() {
         def ent1 = DomainProvider.getRandomEntity()
@@ -35,8 +38,19 @@ class SearchTest {
     }
 
     @Test
-    def void testEntityFilter() {
-        EntityFilter entityFilter = new EntityFilter()
+    def void testEntityFilter1() {
+        Assert.assertThat("must be 3", pagingService.count(entityFilter), Matchers.is(0));
+    }
+
+    @Test
+    def void testEntityFilter2() {
+        entityFilter.ageFilter.setEnabled(false)
+        entityFilter.ageSubFilter.setEnabled(false)
         Assert.assertThat("must be 3", pagingService.count(entityFilter), Matchers.is(3));
+    }
+
+    @After
+    def void deleteEntities() {
+        entityRepository.deleteAll()
     }
 }
